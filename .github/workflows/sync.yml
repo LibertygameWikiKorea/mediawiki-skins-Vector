@@ -33,10 +33,12 @@ jobs:
 
             - name: Merge all branches
               run: |
-                for branch in "${{ steps.branches.outputs.branches }}"; do
+                for branch in "$BRANCHES"; do
                   git checkout -b $branch "origin/$branch"
                   git merge --no-edit "upstream/$branch"
                 done
+              env:
+                BRANCHES: ${{ steps.branches.outputs.branches }}
 
             - name: Push all merged branches
               run: git push origin --branches
