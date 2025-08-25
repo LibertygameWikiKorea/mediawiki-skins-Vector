@@ -34,7 +34,7 @@ jobs:
             - name: Merge all branches
               run: |
                 for branch in "$BRANCHES"; do
-                  if [ -z "$(git branch --list --remote origin/REL1_44)" ]; then
+                  if [ -z $(git branch --list --remote "origin/$branch") ]; then
                     git branch -c "upstream/$branch" "$branch"
                   else
                     git checkout "origin/$branch"
