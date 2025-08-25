@@ -37,7 +37,7 @@ jobs:
                   if [ -z $(git branch --list --remote "origin/$branch") ]; then
                     git checkout -b "$branch" "upstream/$branch"
                   else
-                    git checkout "$branch"
+                    git checkout "origin/$branch"
                     git merge --no-edit "upstream/$branch"
                   fi
                 done
