@@ -27,7 +27,9 @@ jobs:
               run: |
                 BRANCHES="master"$'\n'"$(git branch --list -r upstream/REL* --format '%(refname:lstrip=-1)')"
                 echo $BRANCHES
-                echo "branches=$BRANCHES" >> $GITHUB_OUTPUT
+                echo "branches<<EOL" >> $GITHUB_OUTPUT
+                echo "$BRANCHES" >> $GITHUB_OUTPUT
+                echo "EOL" >> $GITHUB_OUTPUT
 
             - name: Merge all branches
               run: |
