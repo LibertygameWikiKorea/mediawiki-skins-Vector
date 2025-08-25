@@ -33,7 +33,7 @@ jobs:
 
             - name: Merge all branches
               run: |
-                for branch in "${{ steps.branches.branches }}"; do
+                for branch in "${{ steps.branches.outputs.branches }}"; do
                   git checkout -b $branch "origin/$branch"
                   git merge --no-edit "upstream/$branch"
                 done
