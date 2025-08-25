@@ -119,7 +119,7 @@
 					"template": "skin-legacy",
 					"clientPrefEnabled": true,
 					"templateDirectory": "includes/templates",
-					"responsive": false,
+					"responsive": true,
 					"link": {
 						"text-wrapper": {
 							"tag": "span"
