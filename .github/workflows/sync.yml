@@ -34,8 +34,12 @@ jobs:
             - name: Merge all branches
               run: |
                 for branch in "$BRANCHES"; do
-                  git checkout -b $branch "origin/$branch"
-                  git merge --no-edit "upstream/$branch"
+                  if [ -z "$(git branch --list --remote origin/REL1_44)" ]; then
+                    git branch -c "upstream/$branch" "$branch"
+                  else
+                    git checkout "origin/$branch"
+                    git merge --no-edit "upstream/$branch"
+                  fi
                 done
               env:
                 BRANCHES: ${{ steps.branches.outputs.branches }}
