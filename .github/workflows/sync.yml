@@ -33,7 +33,7 @@ jobs:
 
             - name: Merge all branches
               run: |
-                for branch in "$BRANCHES"; do
+                for branch in $(echo "$BRANCHES"); do
                   if [ -z $(git branch --list --remote "origin/$branch") ]; then
                     git branch -c "upstream/$branch" "$branch"
                   else
