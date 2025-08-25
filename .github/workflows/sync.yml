@@ -1,0 +1,40 @@
+name: Sync all branches from upstream
+
+on:
+    schedule:
+      # 매일 22시 
+      - cron: 0 22 * * *
+    workflow_dispatch:
+
+jobs:
+    sync:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout from the repository
+              uses: actions/checkout@v5
+              with:
+                  fetch-depth: 0
+
+            - name: Add upstream
+              run: git remote add upstream https://github.com/wikimedia/mediawiki-skins-Vector
+
+            - name: Fetch upstream branches
+              run: git fetch upstream
+
+            - name: Get all branch name
+              id: branches
+              run: |
+                BRANCHES="master"$'\n'"$(git branch --list -r upstream/REL* --format '%(refname:lstrip=-1)')"
+                echo $BRANCHES
+                echo "branches=$BRANCHES" >> $GITHUB_OUTPUT
+
+            - name: Merge all branches
+              run: |
+                for branch in "${{ steps.branches.branches }}"; do
+                  git checkout -b $branch "origin/$branch"
+                  git merge --no-edit "upstream/$branch"
+                done
+
+            - name: Push all merged branches
+              run: git push origin --branches
