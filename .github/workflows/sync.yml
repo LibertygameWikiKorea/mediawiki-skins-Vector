@@ -2,8 +2,8 @@ name: Sync all branches from upstream
 
 on:
     schedule:
-      # 매일 22시 
-      - cron: 0 22 * * *
+      # 매일 22시(UTC+9) / 13시(UTC)
+      - cron: 0 13 * * *
     workflow_dispatch:
 
 jobs:
