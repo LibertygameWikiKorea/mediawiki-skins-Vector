@@ -50,7 +50,7 @@ jobs:
                     else
                       git checkout "$branch"
                     fi
-                    git rebase "upstream/$branch"
+                    git merge --no-edit "upstream/$branch"
                   fi
                 done
               env:
