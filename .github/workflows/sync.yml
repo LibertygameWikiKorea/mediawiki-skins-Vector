@@ -46,7 +46,7 @@ jobs:
                     git checkout -b "$branch" "upstream/$branch"
                   else
                     git checkout "origin/$branch"
-                    git rebase "upstream/$branch"
+                    git merge --no-edit "upstream/$branch"
                   fi
                 done
               env:
