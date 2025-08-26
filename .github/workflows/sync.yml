@@ -45,8 +45,12 @@ jobs:
                   if [ -z $(git branch --list --remote "origin/$branch") ]; then
                     git checkout -b "$branch" "upstream/$branch"
                   else
-                    git checkout "$branch"
-                    git merge --no-edit "upstream/$branch"
+                    if [ -z $(git branch --list "$branch") ]; then
+                      git checkout -b "$branch" "origin/$branch"
+                    else
+                      git checkout "$branch"
+                    end
+                    git rebase "upstream/$branch"
                   fi
                 done
               env:
