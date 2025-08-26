@@ -16,6 +16,14 @@ jobs:
               with:
                   fetch-depth: 0
 
+            - name: Set up git profile
+              run: |
+                git config --global user.name "$USER_NAME"
+                git config --global user.email "$USER_EMAIL"
+              env:
+                USER_NAME: github-actions[bot]
+                USER_EMAIL: github-actions[bot]@users.noreply.github.com
+
             - name: Add upstream
               run: git remote add upstream https://github.com/wikimedia/mediawiki-skins-Vector
 
@@ -38,7 +46,7 @@ jobs:
                     git checkout -b "$branch" "upstream/$branch"
                   else
                     git checkout "origin/$branch"
-                    git merge --no-edit "upstream/$branch"
+                    git rebase "upstream/$branch"
                   fi
                 done
               env:
