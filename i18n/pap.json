@@ -6,9 +6,9 @@
 			"ObaTango"
 		]
 	},
-	"vector-languages": "Lenguahe",
+	"vector-languages": "Idiomanan",
 	"vector-language-button-label": "{{PLURAL:$1|$1 idioma}}",
-	"vector-no-language-button-label": "Agregá lenguahe",
+	"vector-no-language-button-label": "Vug idioma",
 	"vector-action-addsection": "Añadí un tópiko",
 	"vector-action-delete": "Kita",
 	"vector-action-move": "Move",
