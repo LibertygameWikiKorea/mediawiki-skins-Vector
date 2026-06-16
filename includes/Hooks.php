@@ -95,6 +95,7 @@ class Hooks implements
 		// Please see the modules `skins.vector.js` and `skins.vector.legacy.js`
 		// for the wire up of search.
 		$config['searchModule'] = 'skins.vector.search';
+		$config['watchLoadingStates'] = false;
 	}
 
 	/**
