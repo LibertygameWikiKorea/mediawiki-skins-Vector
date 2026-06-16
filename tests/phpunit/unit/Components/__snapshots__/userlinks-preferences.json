@@ -36,18 +36,14 @@
                 "class": "mw-list-item user-links-collapsible-item vector-menu-item--collapsible",
                 "array-links": [
                     {
-                        "icon": "wikimedia-language",
-                        "array-attributes": [
-                            {
-                                "key": "href",
-                                "value": "#"
-                            },
-                            {
-                                "key": "class",
-                                "value": "uls cdx-button cdx-button--fake-button cdx-button--fake-button--enabled cdx-button--weight-quiet"
-                            }
-                        ],
-                        "text": "English"
+                        "data-button": {
+                            "label": "English",
+                            "icon": "wikimedia-language",
+                            "id": "",
+                            "class": "cdx-button cdx-button--fake-button cdx-button--fake-button--enabled cdx-button--weight-quiet uls",
+                            "href": "#",
+                            "array-attributes": []
+                        }
                     }
                 ]
             }

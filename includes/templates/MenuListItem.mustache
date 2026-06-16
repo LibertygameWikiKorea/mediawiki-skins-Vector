@@ -1,6 +1,7 @@
 <li id="{{id}}" class="{{class}}">{{!
 }}{{#array-links}}{{!
-	}}{{>Link}}{{!
+	}}{{#data-button}}{{>Button}}{{/data-button}}{{!
+	}}{{^data-button}}{{>Link}}{{/data-button}}{{!
 }}{{/array-links}}{{!
 }}{{text}}{{!
 }}</li>

@@ -32,14 +32,14 @@
                 "class": "",
                 "array-links": [
                     {
-                        "array-attributes": [
-                            {
-                                "key": "class",
-                                "value": " cdx-button cdx-button--fake-button cdx-button--fake-button--enabled cdx-button--weight-quiet cdx-button--icon-only"
-                            }
-                        ],
-                        "icon": "bookmark",
-                        "text": "bookmark"
+                        "data-button": {
+                            "label": "bookmark",
+                            "icon": "bookmark",
+                            "id": "",
+                            "class": "cdx-button cdx-button--weight-quiet cdx-button--icon-only",
+                            "href": "",
+                            "array-attributes": []
+                        }
                     }
                 ]
             }

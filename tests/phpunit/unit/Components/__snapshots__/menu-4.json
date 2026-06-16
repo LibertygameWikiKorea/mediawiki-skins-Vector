@@ -7,18 +7,14 @@
         "class": " user-links-collapsible-item vector-menu-item--collapsible",
         "array-links": [
             {
-                "icon": "star",
-                "array-attributes": [
-                    {
-                        "key": "href",
-                        "value": ""
-                    },
-                    {
-                        "key": "class",
-                        "value": " cdx-button cdx-button--fake-button cdx-button--fake-button--enabled cdx-button--weight-quiet"
-                    }
-                ],
-                "text": "Link1"
+                "data-button": {
+                    "label": "Link1",
+                    "icon": "star",
+                    "id": "",
+                    "class": "cdx-button cdx-button--weight-quiet",
+                    "href": "",
+                    "array-attributes": []
+                }
             }
         ]
     },
@@ -30,18 +26,14 @@
         "class": " user-links-collapsible-item vector-menu-item--collapsible",
         "array-links": [
             {
-                "icon": "star",
-                "array-attributes": [
-                    {
-                        "key": "href",
-                        "value": ""
-                    },
-                    {
-                        "key": "class",
-                        "value": " cdx-button cdx-button--fake-button cdx-button--fake-button--enabled cdx-button--weight-quiet"
-                    }
-                ],
-                "text": "Link2"
+                "data-button": {
+                    "label": "Link2",
+                    "icon": "star",
+                    "id": "",
+                    "class": "cdx-button cdx-button--weight-quiet",
+                    "href": "",
+                    "array-attributes": []
+                }
             }
         ]
     }

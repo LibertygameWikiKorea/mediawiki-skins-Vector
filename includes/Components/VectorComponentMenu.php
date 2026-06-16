@@ -7,9 +7,6 @@ use Countable;
  * VectorComponentMenu component
  */
 class VectorComponentMenu implements VectorComponent, Countable {
-	public const BUTTON_CLASSES = 'cdx-button cdx-button--fake-button '
-	. 'cdx-button--fake-button--enabled cdx-button--weight-quiet';
-	public const ICON_ONLY_BUTTON_CLASS = 'cdx-button--icon-only';
 	// TODO: Remove user-links-collapsible-item after I12cdb5c2a3dff638d59066b2c2c9597133855dee is in prod for 2 weeks
 	public const COLLAPSIBLE_CLASS = 'user-links-collapsible-item vector-menu-item--collapsible';
 
@@ -90,24 +87,31 @@ class VectorComponentMenu implements VectorComponent, Countable {
 
 			// Update link classes
 			$item['array-links'] = array_map( static function ( $link ) use ( $styles ) {
-				if ( array_key_exists( 'icon', $styles ) ) {
-					$link['icon'] = $styles['icon'];
+				// Override existing icon if needed
+				$existingIcon = $link['icon'] ?? null;
+				$icon = array_key_exists( 'icon', $styles ) ? $styles['icon'] : $existingIcon;
+
+				$buttonStyles = $styles['button'] ?? false;
+				if ( $buttonStyles ) {
+					$attributes = array_column( $link['array-attributes'] ?? [], 'value', 'key' );
+					$buttonComponent = new VectorComponentButton(
+						label: $link['text'] ?? '',
+						icon: $icon,
+						id: $attributes['id'] ?? '',
+						class: $attributes['class'] ?? '',
+						attributes: $attributes,
+						weight: 'quiet',
+						action: $styles['button']['action'] ?? 'default',
+						iconOnly: $styles['button']['iconOnly'] ?? false,
+						href: $attributes['href'] ?? '',
+					);
+					return [
+						'data-button' => $buttonComponent->getTemplateData()
+					];
 				}
-				$link['array-attributes'] = array_map( static function ( $attribute ) use ( $styles ) {
-					if ( $attribute['key'] === 'class' ) {
-						$newClass = $attribute['value'];
-						$isButton = $styles['button'] ?? false;
-						$isIconOnlyButton = $styles['button' ]['iconOnly'] ?? false;
-						if ( $isButton ) {
-							$newClass .= ' ' . self::BUTTON_CLASSES;
-						}
-						if ( $isIconOnlyButton ) {
-							$newClass .= ' ' . self::ICON_ONLY_BUTTON_CLASS;
-						}
-						$attribute['value'] = $newClass;
-					}
-					return $attribute;
-				}, $link['array-attributes'] ?? [] );
+
+				// TODO: Use VectorComponentLink instead of mutating link data directly
+				$link['icon'] = $icon;
 				return $link;
 			}, $item['array-links'] ?? [] );
 			return $item;

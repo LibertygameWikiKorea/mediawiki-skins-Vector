@@ -7,18 +7,14 @@
         "class": "",
         "array-links": [
             {
-                "icon": "heart",
-                "array-attributes": [
-                    {
-                        "key": "href",
-                        "value": ""
-                    },
-                    {
-                        "key": "class",
-                        "value": " cdx-button cdx-button--fake-button cdx-button--fake-button--enabled cdx-button--weight-quiet cdx-button--icon-only"
-                    }
-                ],
-                "text": "Link1"
+                "data-button": {
+                    "label": "Link1",
+                    "icon": "heart",
+                    "id": "",
+                    "class": "cdx-button cdx-button--weight-quiet cdx-button--icon-only",
+                    "href": "",
+                    "array-attributes": []
+                }
             }
         ]
     },
@@ -30,18 +26,14 @@
         "class": "",
         "array-links": [
             {
-                "icon": "userAdd",
-                "array-attributes": [
-                    {
-                        "key": "href",
-                        "value": ""
-                    },
-                    {
-                        "key": "class",
-                        "value": " cdx-button cdx-button--fake-button cdx-button--fake-button--enabled cdx-button--weight-quiet cdx-button--icon-only"
-                    }
-                ],
-                "text": "Link2"
+                "data-button": {
+                    "label": "Link2",
+                    "icon": "userAdd",
+                    "id": "",
+                    "class": "cdx-button cdx-button--weight-quiet cdx-button--icon-only",
+                    "href": "",
+                    "array-attributes": []
+                }
             }
         ]
     }

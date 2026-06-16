@@ -30,18 +30,14 @@
         "class": "",
         "array-links": [
             {
-                "icon": "userAdd",
-                "array-attributes": [
-                    {
-                        "key": "href",
-                        "value": ""
-                    },
-                    {
-                        "key": "class",
-                        "value": " cdx-button cdx-button--fake-button cdx-button--fake-button--enabled cdx-button--weight-quiet"
-                    }
-                ],
-                "text": "Link2"
+                "data-button": {
+                    "label": "Link2",
+                    "icon": "userAdd",
+                    "id": "",
+                    "class": "cdx-button cdx-button--weight-quiet",
+                    "href": "",
+                    "array-attributes": []
+                }
             }
         ]
     }

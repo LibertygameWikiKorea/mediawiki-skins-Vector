@@ -25,19 +25,14 @@
                 "class": " user-links-collapsible-item vector-menu-item--collapsible",
                 "array-links": [
                     {
-                        "icon": "watchlist",
-                        "class": "",
-                        "array-attributes": [
-                            {
-                                "key": "href",
-                                "value": "\/watchlist"
-                            },
-                            {
-                                "key": "class",
-                                "value": " cdx-button cdx-button--fake-button cdx-button--fake-button--enabled cdx-button--weight-quiet cdx-button--icon-only"
-                            }
-                        ],
-                        "text": "Watchlist"
+                        "data-button": {
+                            "label": "Watchlist",
+                            "icon": "watchlist",
+                            "id": "",
+                            "class": "cdx-button cdx-button--fake-button cdx-button--fake-button--enabled cdx-button--weight-quiet cdx-button--icon-only",
+                            "href": "\/watchlist",
+                            "array-attributes": []
+                        }
                     }
                 ]
             }
