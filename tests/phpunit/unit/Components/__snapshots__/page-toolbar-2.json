@@ -18,12 +18,17 @@
             },
             {
                 "id": "ca-unwatch",
-                "class": "vector-tab-noicon",
+                "class": "",
                 "array-links": [
                     {
-                        "icon": "unStar",
-                        "array-attributes": [],
-                        "text": "watch"
+                        "data-button": {
+                            "label": "watch",
+                            "icon": "unStar",
+                            "id": "",
+                            "class": "cdx-button cdx-button--weight-quiet cdx-button--action-progressive",
+                            "href": "",
+                            "array-attributes": []
+                        }
                     }
                 ]
             },

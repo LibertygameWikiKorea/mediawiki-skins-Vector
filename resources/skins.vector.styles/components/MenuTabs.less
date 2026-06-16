@@ -8,37 +8,25 @@
 
 	// Expand watchstar and wikilove links it to cover full touch area
 	.mw-list-item {
-		.cdx-button--icon-only {
+		.cdx-button {
 			// Align small icons with the bottom of the tabs.
 			margin: 1px 0 0;
 		}
 
-		&.mw-watchlink {
-			a {
-				@supports (-moz-appearance: none) {
-					// Improve Firefox alignment
-					margin-top: -1px;
-				}
+		// Override button styles in the page toolbar to match the styles of the tabs in the titlebar
+		// Except bookmark icon
+		.cdx-button:not( .cdx-button--icon-only ) {
+			gap: 3px;
+			padding: 0 @padding-horizontal-tabs;
 
-				&:hover {
-					background-color: @background-color-interactive-subtle--hover;
-					mix-blend-mode: @mix-blend-mode-blend;
-				}
-
-				&:active {
-					background-color: @background-color-interactive-subtle--active;
-				}
-			}
-
+			// Reduce icon size for icon in the page toolbar (i.e. watchstar, wikilove)
 			.vector-icon {
-				background: @color-progressive;
-				margin-right: @spacing-12;
-				mask-size: @font-size-small;
+				.cdx-mixin-css-icon-background( @size-icon-small );
+				.cdx-mixin-css-icon-size( @size-icon-small );
+				.cdx-mixin-css-icon-alignment( );
 
-				// Align watchstar icon with label
-				~ span {
-					align-content: center;
-				}
+				// Temporary fix for https://phabricator.wikimedia.org/T356540
+				background-size: ~'calc( max( @{size-icon-small}, @{min-size-icon-small} ) )';
 			}
 		}
 	}
@@ -48,13 +36,6 @@
 		a:focus,
 		a:hover {
 			text-decoration: none;
-		}
-
-		&:not( .mw-watchlink ) {
-			a:focus,
-			a:hover {
-				border-bottom: 2px @border-style-base;
-			}
 		}
 	}
 

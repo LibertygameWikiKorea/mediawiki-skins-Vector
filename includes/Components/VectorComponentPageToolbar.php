@@ -9,7 +9,12 @@ use MediaWiki\Skins\Vector\FeatureManagement\FeatureManager;
  * VectorPageActions component
  */
 class VectorComponentPageToolbar implements VectorComponent {
-	private const ICON_LINK = [];
+	private const ICON_BUTTON = [
+		'class' => '',
+		'button' => [
+			'action' => 'progressive'
+		]
+	];
 	private const ICON_ONLY_BUTTON = [
 		'class' => '',
 		'button' => [
@@ -81,8 +86,8 @@ class VectorComponentPageToolbar implements VectorComponent {
 				'icon' => false,
 			],
 			[
-				'ca-unwatch' => self::ICON_LINK,
-				'ca-watch' => self::ICON_LINK,
+				'ca-unwatch' => self::ICON_BUTTON,
+				'ca-watch' => self::ICON_BUTTON,
 				'ca-wikilove' => self::ICON_ONLY_BUTTON,
 				'ca-bookmark' => self::ICON_ONLY_BUTTON,
 			]
