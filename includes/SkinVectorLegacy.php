@@ -139,6 +139,12 @@ class SkinVectorLegacy extends SkinMustache {
 				$portletData['html-tooltip'] = '';
 				$portletData['class'] .= ' vector-user-menu-legacy';
 				break;
+			case 'data-footer-icons':
+				$portletData['class'] .= ' noprint';
+				// Fall through to return portlet data without menu type classes.
+			case 'data-footer-info':
+			case 'data-footer-places':
+				return $portletData;
 			default:
 				$type = self::MENU_TYPE_PORTAL;
 				break;

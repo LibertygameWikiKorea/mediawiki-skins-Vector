@@ -141,7 +141,10 @@
 						"views",
 						"actions",
 						"variants",
-						"associated-pages"
+						"associated-pages",
+						"footer-info",
+						"footer-places",
+						"footer-icons"
 					],
 					"scripts": [
 						"skins.vector.legacy.js"
