@@ -22,6 +22,7 @@
 namespace MediaWiki\Skins\Vector\Tests\Unit\Components;
 
 use MediaWiki\Language\MessageLocalizer;
+use MediaWiki\Message\Message;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Skins\Vector\Components\VectorComponent;
 use MediaWiki\Skins\Vector\Components\VectorComponentMainMenu;
@@ -118,6 +119,14 @@ class VectorComponentMainMenuTest extends MediaWikiUnitTestCase {
 		$localizerMock = $this->createMock( MessageLocalizer::class );
 		$userMock = $this->createMock( UserIdentity::class );
 		$featureManagerMock = $this->createMock( FeatureManager::class );
+
+		$localizerMock->method( 'msg' )->willReturnCallback( function ( $key ) {
+			return $this->createConfiguredMock( Message::class, [
+				// Simulated localization output.
+				'text' => $key . '-mocked-label',
+				'__toString' => $key . '-mocked-label',
+			] );
+		} );
 
 		// Mock the isFeatureEnabled method
 		$featureManagerMock->expects( $this->any() )

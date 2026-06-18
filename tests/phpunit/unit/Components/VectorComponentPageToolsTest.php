@@ -31,7 +31,7 @@ use MediaWiki\Skins\Vector\FeatureManagement\FeatureManager;
  * @group Components
  * @coversDefaultClass \MediaWiki\Skins\Vector\Components\VectorComponentPageTools
  */
-class VectorComponentPageToolsTest extends \MediaWikiUnitTestCase {
+class VectorComponentPageToolsTest extends VectorComponentSnapshotTestCase {
 	private const EMPTY_FIELDS = [
 		'class' => '',
 		'html-items' => '',
@@ -91,34 +91,17 @@ class VectorComponentPageToolsTest extends \MediaWikiUnitTestCase {
 			[
 				$menus,
 				false,
-				[
-					'id' => 'vector-page-tools',
-					'is-pinned' => false,
-					'data-pinnable-header' => self::getPinnableHeaderData(),
-					'data-menus' => $expectedMenus
-				]
+				'page-tools-1.json'
 			],
 			[
 				$menus,
 				true,
-				[
-					'id' => 'vector-page-tools',
-					'is-pinned' => true,
-					'data-pinnable-header' => self::getPinnableHeaderData( [
-						'is-pinned' => true,
-					] ),
-					'data-menus' => $expectedMenus
-				]
+				'page-tools-2.json'
 			],
 			[
 				$menus,
 				false,
-				[
-					'id' => 'vector-page-tools',
-					'is-pinned' => false,
-					'data-pinnable-header' => self::getPinnableHeaderData(),
-					'data-menus' => $expectedMenus
-				]
+				'page-tools-3.json'
 			]
 		];
 	}
@@ -130,7 +113,7 @@ class VectorComponentPageToolsTest extends \MediaWikiUnitTestCase {
 	public function testGetTemplateData(
 		array $menus,
 		bool $isPinned,
-		array $expected
+		string $snapshotName
 	) {
 		$localizer = $this->createMock( MessageLocalizer::class );
 		$localizer->method( 'msg' )->willReturnCallback( function ( $key, ...$params ) {
@@ -147,6 +130,13 @@ class VectorComponentPageToolsTest extends \MediaWikiUnitTestCase {
 			$localizer,
 			$featureManager
 		);
-		$this->assertEquals( $expected, $pageTools->getTemplateData() );
+		$data = $pageTools->getTemplateData();
+		// To update snapshot uncomment following line temporarily.
+		// $this->updateSnapshot( $snapshotName, $data );
+		$this->assertEqualsSnapshot(
+			$snapshotName,
+			$data,
+			'If failing update snapshot. See instructions in test.'
+		);
 	}
 }

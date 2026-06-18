@@ -32,7 +32,7 @@ use ReflectionMethod;
  * @group Components
  * @coversDefaultClass \MediaWiki\Skins\Vector\Components\VectorComponentPageToolbar
  */
-class VectorComponentPageToolbarTest extends \MediaWikiUnitTestCase {
+class VectorComponentPageToolbarTest extends VectorComponentSnapshotTestCase {
 	private const MAIN = [
 		'id' => 'p-navigation',
 	];
@@ -126,7 +126,7 @@ class VectorComponentPageToolbarTest extends \MediaWikiUnitTestCase {
 				[],
 				[],
 				true,
-				[]
+				'page-toolbar-1.json'
 			],
 			[
 				[
@@ -176,46 +176,7 @@ class VectorComponentPageToolbarTest extends \MediaWikiUnitTestCase {
 				],
 				[],
 				true,
-				[
-					[
-						'id' => 'ca-edit',
-						'class' => 'user-links-collapsible-item vector-menu-item--collapsible vector-tab-noicon',
-						'array-links' => [
-							[
-								'array-attributes' => [],
-								'text' => 'edit',
-								'icon' => false,
-							]
-						],
-					],
-					[
-						'id' => 'ca-unwatch',
-						'class' => 'vector-tab-noicon',
-						'array-links' => [
-							[
-								'icon' => 'unStar',
-								'array-attributes' => [],
-								'text' => 'watch',
-							]
-						],
-					],
-					[
-						'id' => 'ca-bookmark',
-						'class' => '',
-						'array-links' => [
-							[
-								'array-attributes' => [
-									[
-										'key' => 'class',
-										'value' => $iconOnlyClass,
-									]
-								],
-								'icon' => 'bookmark',
-								'text' => 'bookmark'
-							]
-						],
-					]
-				]
+				'page-toolbar-2.json'
 			]
 		];
 	}
@@ -224,7 +185,7 @@ class VectorComponentPageToolbarTest extends \MediaWikiUnitTestCase {
 	 * @covers ::getTemplateData
 	 * @dataProvider provideGetTemplateData
 	 */
-	public function testGetTemplateData( $portletData, $sidebar, $isFeatureEnabled, $expectedToolbarActions ) {
+	public function testGetTemplateData( $portletData, $sidebar, $isFeatureEnabled, $snapshotName ) {
 		$localizer = $this->createMock( MessageLocalizer::class );
 		$localizer->method( 'msg' )->willReturnCallback( function ( $key, ...$params ) {
 			$msg = $this->createMock( Message::class );
@@ -241,12 +202,12 @@ class VectorComponentPageToolbarTest extends \MediaWikiUnitTestCase {
 			$sidebar
 		);
 		$data = $vectorComponentPageToolbar->getTemplateData();
-		$this->assertArrayHasKey( 'data-page-tools', $data );
-		$this->assertArrayHasKey( 'data-portlets', $data );
-		$this->assertArrayHasKey( 'data-page-tools-dropdown', $data );
-		$this->assertSame(
-			$expectedToolbarActions,
-			$data[ 'data-toolbar-actions' ]['array-list-items'] ?? []
+		// To update snapshot uncomment following line temporarily.
+		// $this->updateSnapshot( $snapshotName, $data );
+		$this->assertEqualsSnapshot(
+			$snapshotName,
+			$data,
+			'If failing update snapshot. See instructions in test.'
 		);
 	}
 }

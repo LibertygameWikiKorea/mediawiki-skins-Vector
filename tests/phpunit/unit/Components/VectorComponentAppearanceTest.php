@@ -22,6 +22,7 @@
 namespace MediaWiki\Skins\Vector\Tests\Unit\Components;
 
 use MediaWiki\Language\MessageLocalizer;
+use MediaWiki\Message\Message;
 use MediaWiki\Skins\Vector\Components\VectorComponentAppearance;
 use MediaWiki\Skins\Vector\FeatureManagement\FeatureManager;
 use MediaWikiUnitTestCase;
@@ -39,6 +40,13 @@ class VectorComponentAppearanceTest extends MediaWikiUnitTestCase {
 	public function testGetTemplateDataPinned() {
 		// Mock the MessageLocalizer and FeatureManager
 		$localizer = $this->createMock( MessageLocalizer::class );
+		$localizer->method( 'msg' )->willReturnCallback( function ( $key ) {
+			return $this->createConfiguredMock( Message::class, [
+				// Simulated localization output.
+				'text' => $key . '-mocked-label',
+				'__toString' => $key . '-mocked-label',
+			] );
+		} );
 		$featureManager = $this->createMock( FeatureManager::class );
 		// The isFeatureEnabled method is called and returns true
 		$featureManager->method( 'isFeatureEnabled' )
@@ -59,14 +67,11 @@ class VectorComponentAppearanceTest extends MediaWikiUnitTestCase {
 			'data-pinnable-header' => [
 				// The is-pinned value is true
 				'is-pinned' => true,
-				// The label is null
-				'label' => null,
+				'label' => 'vector-appearance-label-mocked-label',
 				// The label-tag-name is set to 'div'
 				'label-tag-name' => 'div',
-				// The pin-label is null
-				'pin-label' => null,
-				// The unpin-label is null
-				'unpin-label' => null,
+				'pin-label' => 'vector-pin-element-label-mocked-label',
+				'unpin-label' => 'vector-unpin-element-label-mocked-label',
 				// The data-pinnable-element-id is set to 'vector-appearance'
 				'data-pinnable-element-id' => 'vector-appearance',
 				// The data-feature-name is set to 'appearance-pinned'
@@ -90,6 +95,13 @@ class VectorComponentAppearanceTest extends MediaWikiUnitTestCase {
 	public function testGetTemplateDataUnpinned() {
 		// Mock the MessageLocalizer and FeatureManager
 		$localizer = $this->createMock( MessageLocalizer::class );
+		$localizer->method( 'msg' )->willReturnCallback( function ( $key ) {
+			return $this->createConfiguredMock( Message::class, [
+				// Simulated localization output.
+				'text' => $key . '-mocked-label',
+				'__toString' => $key . '-mocked-label',
+			] );
+		} );
 		$featureManager = $this->createMock( FeatureManager::class );
 		// The isFeatureEnabled method is called and returns false
 		$featureManager->method( 'isFeatureEnabled' )
@@ -110,14 +122,11 @@ class VectorComponentAppearanceTest extends MediaWikiUnitTestCase {
 			'data-pinnable-header' => [
 				// The is-pinned value is false
 				'is-pinned' => false,
-				// The label is null
-				'label' => null,
+				'label' => 'vector-appearance-label-mocked-label',
 				// The label-tag-name is set to 'div'
 				'label-tag-name' => 'div',
-				// The pin-label is null
-				'pin-label' => null,
-				// The unpin-label is null
-				'unpin-label' => null,
+				'pin-label' => 'vector-pin-element-label-mocked-label',
+				'unpin-label' => 'vector-unpin-element-label-mocked-label',
 				// The data-pinnable-element-id is set to 'vector-appearance'
 				'data-pinnable-element-id' => 'vector-appearance',
 				// The data-feature-name is set to 'appearance-pinned'
