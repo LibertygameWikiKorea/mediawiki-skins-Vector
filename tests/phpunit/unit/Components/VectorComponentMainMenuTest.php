@@ -22,6 +22,7 @@
 namespace MediaWiki\Skins\Vector\Tests\Unit\Components;
 
 use MediaWiki\Language\MessageLocalizer;
+use MediaWiki\Message\Message;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Skins\Vector\Components\VectorComponent;
 use MediaWiki\Skins\Vector\Components\VectorComponentMainMenu;
@@ -91,17 +92,24 @@ class VectorComponentMainMenuTest extends MediaWikiUnitTestCase {
 				'sidebarData' => [
 					'data-portlets-first' => [],
 					'array-portlets-rest' => [
+						[
+							'id' => 'p-contribute',
+						],
 						// The TOOLBOX is inside the sidebar. It should be dropped
 						// by the component.
 						[
 							'id' => 'p-tb',
-						]
+						],
+						[
+							'id' => 'p-wikibase-otherprojects',
+						],
 					],
 				],
 				'languageData' => [],
 				'isPinned' => false,
 				'isLanguageSidebar' => true,
 				'isLanguageInHeader' => true,
+				'expectedPortletRestIds' => [ 'p-contribute' ],
 			],
 		];
 	}
@@ -112,12 +120,21 @@ class VectorComponentMainMenuTest extends MediaWikiUnitTestCase {
 	 */
 	public function testGetTemplateData(
 		array $sidebarData, array $languageData, bool $isPinned,
-		bool $isLanguageSidebar = false, bool $isLanguageInHeader = false
+		bool $isLanguageSidebar = false, bool $isLanguageInHeader = false,
+		array $expectedPortletRestIds = []
 	) {
 		// Mock the MessageLocalizer, UserIdentity, FeatureManager, and Skin classes
 		$localizerMock = $this->createMock( MessageLocalizer::class );
 		$userMock = $this->createMock( UserIdentity::class );
 		$featureManagerMock = $this->createMock( FeatureManager::class );
+
+		$localizerMock->method( 'msg' )->willReturnCallback( function ( $key ) {
+			return $this->createConfiguredMock( Message::class, [
+				// Simulated localization output.
+				'text' => $key . '-mocked-label',
+				'__toString' => $key . '-mocked-label',
+			] );
+		} );
 
 		// Mock the isFeatureEnabled method
 		$featureManagerMock->expects( $this->any() )
@@ -152,8 +169,7 @@ class VectorComponentMainMenuTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $isPinned, $templateData['is-pinned'] );
 		$this->assertSame( ( $isLanguageSidebar || !$isLanguageInHeader ) && $languageData,
 			$templateData['is-languages-included'] );
-		// Assert removal of page tools from main menu (T428649)
-		$this->assertSame( [], $templateData['array-portlets-rest'] );
+		$this->assertSame( $expectedPortletRestIds, array_column( $templateData['array-portlets-rest'], 'id' ) );
 
 		// Assert the structure and types of expected keys
 		$this->assertIsArray( $templateData['data-portlets-first'] );

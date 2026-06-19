@@ -35,10 +35,10 @@ class VectorComponentPinnableHeader implements VectorComponent {
 		$messageLocalizer = $this->localizer;
 		$data = [
 			'is-pinned' => $this->pinned,
-			'label' => $messageLocalizer->msg( $this->id . '-label' ),
+			'label' => $messageLocalizer->msg( $this->id . '-label' )->text(),
 			'label-tag-name' => $this->labelTagName,
-			'pin-label' => $messageLocalizer->msg( 'vector-pin-element-label' ),
-			'unpin-label' => $messageLocalizer->msg( 'vector-unpin-element-label' ),
+			'pin-label' => $messageLocalizer->msg( 'vector-pin-element-label' )->text(),
+			'unpin-label' => $messageLocalizer->msg( 'vector-unpin-element-label' )->text(),
 			'data-pinnable-element-id' => $this->id,
 			'data-feature-name' => $this->featureName,
 			// Assumes consistent naming standard for pinnable elements and their containers

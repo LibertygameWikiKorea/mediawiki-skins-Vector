@@ -15,8 +15,10 @@
 
 		&.mw-watchlink {
 			a {
-				// Improve Firefox alignment
-				margin-top: -1px;
+				@supports (-moz-appearance: none) {
+					// Improve Firefox alignment
+					margin-top: -1px;
+				}
 
 				&:hover {
 					background-color: @background-color-interactive-subtle--hover;

@@ -76,6 +76,7 @@ class VectorComponentPinnableHeaderTest extends MediaWikiUnitTestCase {
 		$localizer->method( 'msg' )->willReturnCallback( function ( $key ) {
 			return $this->createConfiguredMock( Message::class, [
 				// Simulated localization output.
+				'text' => $key . '-mocked-label',
 				'__toString' => $key . '-mocked-label',
 			] );
 		} );

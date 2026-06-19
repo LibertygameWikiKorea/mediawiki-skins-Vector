@@ -186,7 +186,8 @@
 	},
 	"TestAutoloadNamespaces": {
 		"MediaWiki\\Skins\\Vector\\": "includes/",
-		"MediaWiki\\Skins\\Vector\\Tests\\": "tests/phpunit/"
+		"MediaWiki\\Skins\\Vector\\Tests\\": "tests/phpunit/",
+		"MediaWiki\\Skins\\Vector\\Tests\\Unit\\": "tests/phpunit/unit/"
 	},
 	"DefaultUserOptions": {
 		"vector-limited-width": 1,

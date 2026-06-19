@@ -4,4 +4,4 @@
 /node_modules/
 /vendor/
 /coverage/
-
+/tests/phpunit/unit/components/__snapshots__/
