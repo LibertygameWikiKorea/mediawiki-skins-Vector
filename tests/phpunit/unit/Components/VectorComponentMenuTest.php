@@ -23,14 +23,13 @@ namespace MediaWiki\Skins\Vector\Tests\Unit\Components;
 
 use MediaWiki\Skins\Vector\Components\VectorComponent;
 use MediaWiki\Skins\Vector\Components\VectorComponentMenu;
-use MediaWikiUnitTestCase;
 
 /**
  * @group Vector
  * @group Components
  * @coversDefaultClass \MediaWiki\Skins\Vector\Components\VectorComponentMenu
  */
-class VectorComponentMenuTest extends MediaWikiUnitTestCase {
+class VectorComponentMenuTest extends VectorComponentSnapshotTestCase {
 	/**
 	 * @var array Menu item template data
 	 */
@@ -88,16 +87,7 @@ class VectorComponentMenuTest extends MediaWikiUnitTestCase {
 				'data' => [ 'class' => 'some-class' ],
 				'menuItemStyles' => [],
 				'menuItemStyleOverrides' => [],
-				'expectedData' => [
-					'class' => 'some-class',
-					'label' => '',
-					'html-tooltip' => '',
-					'label-class' => '',
-					'html-before-portal' => '',
-					'html-items' => '',
-					'html-after-portal' => '',
-					'array-list-items' => null,
-				]
+				'expectedData' => 'menu-1.json',
 			],
 			"Renders with html string" => [
 				'data' => [
@@ -106,16 +96,7 @@ class VectorComponentMenuTest extends MediaWikiUnitTestCase {
 				],
 				'menuItemStyles' => [],
 				'menuItemStyleOverrides' => [],
-				'expectedData' => [
-					'class' => '',
-					'label' => '',
-					'html-tooltip' => '',
-					'label-class' => '',
-					'html-before-portal' => '',
-					'html-items' => '<li><a>link1</a></li><li><a>link2</a></li>',
-					'html-after-portal' => '',
-					'array-list-items' => null
-				],
+				'expectedData' => 'menu-2.json',
 			],
 			"Renders with template data" => [
 				'data' => [
@@ -123,16 +104,7 @@ class VectorComponentMenuTest extends MediaWikiUnitTestCase {
 				],
 				'menuItemStyles' => [],
 				'menuItemStyleOverrides' => [],
-				'expectedData' => [
-					'class' => '',
-					'label' => '',
-					'html-tooltip' => '',
-					'label-class' => '',
-					'html-before-portal' => '',
-					'html-items' => '',
-					'html-after-portal' => '',
-					'array-list-items' => self::$arrayListItems
-				]
+				'expectedData' => 'menu-3.json',
 			],
 		];
 	}
@@ -145,123 +117,19 @@ class VectorComponentMenuTest extends MediaWikiUnitTestCase {
 			"Button styles" => [
 				'menuItemStyles' => [ 'button' => true, 'collapsible' => true, 'icon' => 'star' ],
 				'menuItemStyleOverrides' => [],
-				'expectedData' => [ [
-					"html-item" => '<li><a>link1</a></li>',
-					"name" => "link1",
-					"html" => '<a>link1</a>',
-					"id" => "link-1",
-					"class" => " " . VectorComponentMenu::COLLAPSIBLE_CLASS,
-					"array-links" => [ [
-						"icon" => 'star',
-						"array-attributes" => [ [
-							"key" => "href",
-							"value" => ""
-						], [
-							"key" => "class",
-							"value" => " " . VectorComponentMenu::BUTTON_CLASSES
-						] ],
-						"text" => "Link1"
-					] ]
-				], [
-					"html-item" => '<li><a>link2</a></li>',
-					"name" => "link2",
-					"html" => '<a>link2</a>',
-					"id" => "link-2",
-					"class" => " " . VectorComponentMenu::COLLAPSIBLE_CLASS,
-					"array-links" => [ [
-						"icon" => 'star',
-						"array-attributes" => [ [
-							"key" => "href",
-							"value" => ""
-						], [
-							"key" => "class",
-							"value" => " " . VectorComponentMenu::BUTTON_CLASSES
-						] ],
-						"text" => "Link2"
-					] ]
-				] ]
+				'expectedData' => 'menu-4.json',
 			],
 			"Button with iconOnly variation" => [
 				'menuItemStyles' => [ 'button' => [ 'iconOnly' => true ] ],
 				'menuItemStyleOverrides' => [],
-				'expectedData' => [ [
-					"html-item" => '<li><a>link1</a></li>',
-					"name" => "link1",
-					"html" => '<a>link1</a>',
-					"id" => "link-1",
-					"class" => "",
-					"array-links" => [ [
-						"icon" => 'heart',
-						"array-attributes" => [ [
-							"key" => "href",
-							"value" => ""
-						], [
-							"key" => "class",
-							"value" => " " . VectorComponentMenu::BUTTON_CLASSES .
-								" " . VectorComponentMenu::ICON_ONLY_BUTTON_CLASS
-						] ],
-						"text" => "Link1"
-					] ]
-				], [
-					"html-item" => '<li><a>link2</a></li>',
-					"name" => "link2",
-					"html" => '<a>link2</a>',
-					"id" => "link-2",
-					"class" => "",
-					"array-links" => [ [
-						"icon" => 'userAdd',
-						"array-attributes" => [ [
-							"key" => "href",
-							"value" => ""
-						], [
-							"key" => "class",
-							"value" => " " . VectorComponentMenu::BUTTON_CLASSES .
-								" " . VectorComponentMenu::ICON_ONLY_BUTTON_CLASS
-						] ],
-						"text" => "Link2"
-					] ]
-				] ]
+				'expectedData' => 'menu-5.json',
 			],
 			"Overrides applied to specific items" => [
 				'menuItemStyles' => [ 'button' => true ],
 				'menuItemStyleOverrides' => [
 					'link-1' => [ 'button' => false, 'icon' => 'star' ]
 				],
-				'expectedData' => [ [
-					"html-item" => '<li><a>link1</a></li>',
-					"name" => "link1",
-					"html" => '<a>link1</a>',
-					"id" => "link-1",
-					"class" => "",
-					"array-links" => [ [
-						"icon" => "star",
-						"array-attributes" => [ [
-							"key" => "href",
-							"value" => ""
-						], [
-							"key" => "class",
-							"value" => ""
-						] ],
-						"text" => "Link1"
-					] ]
-				], [
-					"html-item" => '<li><a>link2</a></li>',
-					"name" => "link2",
-					"html" => '<a>link2</a>',
-					"id" => "link-2",
-					"class" => "",
-					"array-links" => [ [
-						"icon" => 'userAdd',
-						"array-attributes" => [ [
-							"key" => "href",
-							"value" => ""
-						], [
-							"key" => "class",
-							"value" => " " . VectorComponentMenu::BUTTON_CLASSES
-						] ],
-						"text" => "Link2"
-					] ]
-				] ]
+				'expectedData' => 'menu-6.json',
 			]
 		];
 	}
@@ -300,7 +168,7 @@ class VectorComponentMenuTest extends MediaWikiUnitTestCase {
 		array $data,
 		array $menuItemStyles,
 		array $menuItemStyleOverrides,
-		array $expectedData
+		string $expectedData
 	 ) {
 		// Create a new VectorComponentMenu object
 		$menu = new VectorComponentMenu( $data, $menuItemStyles, $menuItemStyleOverrides );
@@ -309,7 +177,7 @@ class VectorComponentMenuTest extends MediaWikiUnitTestCase {
 		$actualData = $menu->getTemplateData();
 
 		// Check if the getTemplateData method returns the correct data
-		$this->assertEqualsCanonicalizing( $expectedData, $actualData );
+		$this->assertEqualsSnapshot( $expectedData, $actualData );
 	}
 
 	/**
@@ -320,7 +188,7 @@ class VectorComponentMenuTest extends MediaWikiUnitTestCase {
 	public function testUpdateMenuItemStyles(
 		array $menuItemStyles,
 		array $menuItemStyleOverrides,
-		array $expectedData
+		string $expectedData
 	) {
 		$data = [
 			'html-items' => null,
@@ -329,6 +197,6 @@ class VectorComponentMenuTest extends MediaWikiUnitTestCase {
 		$menu = new VectorComponentMenu( $data, $menuItemStyles, $menuItemStyleOverrides );
 		$actualData = $menu->getTemplateData();
 
-		$this->assertEqualsCanonicalizing( $expectedData, $actualData[ 'array-list-items' ] );
+		$this->assertEqualsSnapshot( $expectedData, $actualData[ 'array-list-items' ] );
 	}
 }

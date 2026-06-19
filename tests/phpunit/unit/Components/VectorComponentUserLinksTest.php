@@ -32,7 +32,7 @@ use MediaWiki\User\UserNameUtils;
  * @group Components
  * @coversDefaultClass \MediaWiki\Skins\Vector\Components\VectorComponentUserLinks
  */
-class VectorComponentUserLinksTest extends \MediaWikiUnitTestCase {
+class VectorComponentUserLinksTest extends VectorComponentSnapshotTestCase {
 	private const ICON = 'testAvatar';
 	private const ULS_LINK = [
 		'icon' => 'wikimedia-language',
@@ -125,16 +125,6 @@ class VectorComponentUserLinksTest extends \MediaWikiUnitTestCase {
 			self::LOGIN_LINK,
 		],
 	];
-	private const LOGIN_ITEM_NO_ICON = [
-		'html-item' => 'ignore',
-		'name' => 'login',
-		'html' => 'Login',
-		'id' => 'pt-login-2',
-		'class' => 'mw-list-item',
-		'array-links' => [
-			self::LOGIN_LINK_NO_ICON,
-		],
-	];
 	private const DONATE_ITEM = [
 		'html-item' => 'ignore',
 		'name' => 'donate',
@@ -155,93 +145,6 @@ class VectorComponentUserLinksTest extends \MediaWikiUnitTestCase {
 			self::WATCHLIST_LINK,
 		],
 	];
-
-	private static function helperAlterItem(
-		array $item, $isCollapsible = false, $isButton = false, $isIconOnly = false
-	) {
-		// TODO: Remove user-links-collapsible-item after I12cdb5c2a3dff638d59066b2c2c9597133855dee
-		// is in prod for 2 weeks
-		$newItem = array_merge( $item, [] );
-		if ( $isCollapsible ) {
-			$newItem['class'] .= ' user-links-collapsible-item vector-menu-item--collapsible';
-		}
-		if ( $isButton ) {
-			$attributes = $newItem['array-links'][0]['array-attributes'];
-			$newItem['array-links'][0]['array-attributes'] = array_map(
-				static function ( $attr ) use ( $isIconOnly ){
-					if ( $attr['key'] === 'class' ) {
-						$attr['value'] .= ' cdx-button cdx-button--fake-button '
-							. 'cdx-button--fake-button--enabled cdx-button--weight-quiet';
-						if ( $isIconOnly ) {
-							$attr['value'] .= ' cdx-button--icon-only';
-						}
-					}
-					return $attr;
-				},
-				$attributes
-			);
-		}
-		return $newItem;
-	}
-
-	private static function helperMakePortlet( string $id, $items = [] ) {
-		$className = empty( $items ) ? 'mw-portlet emptyPortlet' : 'mw-portlet';
-		return [
-			'id' => 'p-vector-user-menu-' . $id,
-			'class' => $className,
-			'label' => null,
-			'html-items' => null,
-			'array-list-items' => $items,
-			'html-tooltip' => '',
-			'label-class' => '',
-			'html-before-portal' => '',
-			'html-after-portal' => '',
-		];
-	}
-
-	private static function helperMakeUserLinksDropDown(
-		$items = [],
-		bool $isRegistered = false,
-		$isCollapsible = true
-	) {
-		$loginStatusClass = 'vector-user-menu-logged-';
-		$loginStatusClass .= $isRegistered ? 'in' : 'out';
-		$dropdownClass = 'vector-user-menu vector-button-flush-right ' . $loginStatusClass;
-		// TODO: Remove user-links-dropdown--collapsible after I12cdb5c2a3dff638d59066b2c2c9597133855dee
-		// is in prod for 2 weeks
-		if ( $isCollapsible ) {
-			$dropdownClass .= ' vector-user-links-dropdown--collapsible user-links-collapsible-item';
-			if ( empty( $items ) ) {
-				$dropdownClass .= '--none';
-			}
-		}
-		return [
-			'id' => 'vector-user-links-dropdown',
-			'label' => 'personaltools',
-			'label-class' => 'cdx-button cdx-button--fake-button '
-				. 'cdx-button--fake-button--enabled cdx-button--weight-quiet cdx-button--icon-only ',
-			'icon' => self::ICON,
-			'html-vector-menu-label-attributes' => '',
-			'html-vector-menu-checkbox-attributes' => '',
-			'class' => $dropdownClass,
-			'html-tooltip' => ' title="vector-personal-tools-tooltip"',
-			'checkbox-class' => '',
-		];
-	}
-
-	private static function helperMakeMenu( array $items = [] ) {
-		return [
-			'id' => 'p-personal',
-			'label' => null,
-			'class' => '',
-			'html-tooltip' => '',
-			'label-class' => '',
-			'html-before-portal' => '',
-			'html-items' => '',
-			'html-after-portal' => '',
-			'array-list-items' => $items,
-		];
-	}
 
 	private static function helperMakePortletData( $items = [] ) {
 		return [
@@ -297,17 +200,7 @@ class VectorComponentUserLinksTest extends \MediaWikiUnitTestCase {
 					'data-user-menu' => self::helperMakePortletData( [] ),
 					'data-user-interface-preferences' => self::helperMakePortletData( [] ),
 				],
-				[
-					'is-wide' => false,
-					'data-user-links-notifications' => self::helperMakePortlet( 'notifications' ),
-					'data-user-links-overflow' => self::helperMakePortlet( 'overflow' ),
-					'data-user-links-preferences' => self::helperMakePortlet( 'preferences' ),
-					'data-user-links-user-page' => self::helperMakePortlet( 'userpage' ),
-					'data-user-links-dropdown' => self::helperMakeUserLinksDropDown(),
-					'data-user-links-menus' => [
-						self::helperMakeMenu(),
-					],
-				]
+				'userlinks-zero.json',
 			],
 			"Overflow links" => [
 				// anonymous user
@@ -319,47 +212,7 @@ class VectorComponentUserLinksTest extends \MediaWikiUnitTestCase {
 					] ),
 					'data-user-interface-preferences' => self::helperMakePortletData( [] ),
 				],
-				[
-					'is-wide' => true,
-					'data-user-links-notifications' => self::helperMakePortlet( 'notifications' ),
-					'data-user-links-overflow' => self::helperMakePortlet(
-						'overflow',
-						[
-							self::helperAlterItem(
-								self::LOGIN_ITEM_NO_ICON,
-								true
-							)
-						]
-					),
-					'data-user-links-preferences' => self::helperMakePortlet( 'preferences' ),
-					'data-user-links-user-page' => self::helperMakePortlet( 'userpage' ),
-					'data-user-links-dropdown' => self::helperMakeUserLinksDropDown(
-						[
-							self::helperAlterItem(
-								self::LOGIN_ITEM,
-								true
-							),
-							self::helperAlterItem(
-								self::DONATE_ITEM,
-								true
-							),
-						]
-					),
-					'data-user-links-menus' => [
-						self::helperMakeMenu(
-							[
-								self::helperAlterItem(
-									self::DONATE_ITEM,
-									false
-								),
-								self::helperAlterItem(
-									self::LOGIN_ITEM,
-									true
-								),
-							]
-						),
-					],
-				]
+				'userlinks-overflow.json',
 			],
 			"User interface preferences" => [
 				// anonymous user
@@ -368,20 +221,7 @@ class VectorComponentUserLinksTest extends \MediaWikiUnitTestCase {
 					'data-user-menu' => self::helperMakePortletData( [] ),
 					'data-user-interface-preferences' => self::helperMakePortletData( [ self::ULS_ITEM ] ),
 				],
-				[
-					'is-wide' => true,
-					'data-user-links-notifications' => self::helperMakePortlet( 'notifications' ),
-					'data-user-links-overflow' => self::helperMakePortlet( 'overflow' ),
-					'data-user-links-preferences' => self::helperMakePortlet(
-						'preferences',
-						[ self::helperAlterItem( self::ULS_ITEM, true, true ) ]
-					),
-					'data-user-links-user-page' => self::helperMakePortlet( 'userpage' ),
-					'data-user-links-dropdown' => self::helperMakeUserLinksDropDown(),
-					'data-user-links-menus' => [
-						self::helperMakeMenu(),
-					],
-				]
+				'userlinks-preferences.json',
 			],
 			"Loggedin user" => [
 				true,
@@ -391,34 +231,7 @@ class VectorComponentUserLinksTest extends \MediaWikiUnitTestCase {
 					] ),
 					'data-user-interface-preferences' => self::helperMakePortletData( [] ),
 				],
-				[
-					'is-wide' => true,
-					'data-user-links-notifications' => self::helperMakePortlet( 'notifications' ),
-					'data-user-links-overflow' => self::helperMakePortlet(
-						'overflow',
-						[
-							self::helperAlterItem(
-								[ 'id' => 'pt-watchlist-2' ] + self::WATCHLIST_ITEM,
-								true,
-								true,
-								true
-							)
-						]
-					),
-					'data-user-links-preferences' => self::helperMakePortlet( 'preferences' ),
-					'data-user-links-user-page' => self::helperMakePortlet( 'userpage' ),
-					'data-user-links-dropdown' => self::helperMakeUserLinksDropDown( [], true, false ),
-					'data-user-links-menus' => [
-						self::helperMakeMenu(
-							[
-								self::helperAlterItem(
-									self::WATCHLIST_ITEM,
-									true
-								),
-							]
-						),
-					],
-				]
+				'userlinks-loggedin.json'
 			]
 		];
 	}
@@ -430,7 +243,7 @@ class VectorComponentUserLinksTest extends \MediaWikiUnitTestCase {
 	public function testGetTemplateData(
 		bool $isRegistered,
 		array $portletData,
-		array $expected
+		string $expectedSnapshot
 	) {
 		$localizer = $this->createMock( MessageLocalizer::class );
 		$userMock = $this->createMock( UserIdentity::class );
@@ -452,8 +265,8 @@ class VectorComponentUserLinksTest extends \MediaWikiUnitTestCase {
 			$portletData,
 			self::ICON
 		);
-		$this->assertEquals(
-			$expected,
+		$this->assertEqualsSnapshot(
+			$expectedSnapshot,
 			$userLinks->getTemplateData()
 		);
 	}

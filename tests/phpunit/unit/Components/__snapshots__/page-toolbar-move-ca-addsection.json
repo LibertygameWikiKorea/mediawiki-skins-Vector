@@ -1,0 +1,93 @@
+{
+    "data-toolbar-actions": {
+        "id": "p-views",
+        "class": "foo",
+        "label": null,
+        "html-items": null,
+        "array-list-items": [
+            {
+                "id": "ca-edit",
+                "class": "user-links-collapsible-item vector-menu-item--collapsible vector-tab-noicon",
+                "array-links": [
+                    {
+                        "array-attributes": [],
+                        "text": "edit",
+                        "icon": false
+                    }
+                ]
+            },
+            {
+                "id": "ca-addsection",
+                "class": "user-links-collapsible-item vector-menu-item--collapsible vector-tab-noicon",
+                "array-links": [
+                    {
+                        "array-attributes": [],
+                        "text": "edit",
+                        "icon": false
+                    }
+                ]
+            }
+        ],
+        "html-tooltip": "",
+        "label-class": "",
+        "html-before-portal": "",
+        "html-after-portal": ""
+    },
+    "data-page-tools": {
+        "id": "vector-page-tools",
+        "is-pinned": true,
+        "data-pinnable-header": {
+            "is-pinned": true,
+            "label": "vector-page-tools-label",
+            "label-tag-name": "div",
+            "pin-label": "vector-pin-element-label",
+            "unpin-label": "vector-unpin-element-label",
+            "data-pinnable-element-id": "vector-page-tools",
+            "data-feature-name": "page-tools-pinned",
+            "data-unpinned-container-id": "vector-page-tools-unpinned-container",
+            "data-pinned-container-id": "vector-page-tools-pinned-container"
+        },
+        "data-menus": [
+            []
+        ]
+    },
+    "data-portlets": {
+        "data-views": {
+            "id": "p-views",
+            "class": "foo",
+            "array-items": [
+                {
+                    "id": "ca-edit",
+                    "class": "",
+                    "array-links": [
+                        {
+                            "array-attributes": [],
+                            "text": "edit"
+                        }
+                    ]
+                },
+                {
+                    "id": "ca-addsection",
+                    "class": "",
+                    "array-links": [
+                        {
+                            "array-attributes": [],
+                            "text": "edit"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "data-page-tools-dropdown": {
+        "id": "vector-page-tools-dropdown",
+        "label": "toolbox",
+        "label-class": "cdx-button cdx-button--fake-button cdx-button--fake-button--enabled cdx-button--weight-quiet",
+        "icon": null,
+        "html-vector-menu-label-attributes": "",
+        "html-vector-menu-checkbox-attributes": "",
+        "class": "vector-page-tools-dropdown",
+        "html-tooltip": "",
+        "checkbox-class": ""
+    }
+}
