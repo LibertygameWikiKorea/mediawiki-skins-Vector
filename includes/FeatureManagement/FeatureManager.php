@@ -178,27 +178,27 @@ class FeatureManager {
 			switch ( $featureName ) {
 				// This feature has 3 possible states: 0, 1, 2 and -excluded.
 				// It persists for all users.
-				case CONSTANTS::FEATURE_FONT_SIZE:
+				case Constants::FEATURE_FONT_SIZE:
 					if ( $this->configHelper->shouldDisable(
 						$config->get( 'VectorFontSizeConfigurableOptions' ), $request, $title
 					) ) {
 						return $prefix . 'clientpref--excluded';
 					}
-					$suffixEnabled = 'clientpref-' . $this->getUserPreferenceValue( CONSTANTS::PREF_KEY_FONT_SIZE );
+					$suffixEnabled = 'clientpref-' . $this->getUserPreferenceValue( Constants::PREF_KEY_FONT_SIZE );
 					$suffixDisabled = 'clientpref-0';
 					break;
 				// This feature has 3 possible states: day, night, os.
 				// A 4th state (-excluded) may be applied client-side by
 				// disableNightModeIfGadget.js when a conflicting gadget is active.
 				// It persists for all users.
-				case CONSTANTS::PREF_NIGHT_MODE:
+				case Constants::PREF_NIGHT_MODE:
 					$prefix = '';
 					$valueRequest = $request->getRawVal( 'vectornightmode' );
 					// If night mode query string is used, hardcode pref value to the night mode value
 					// NOTE: The query string parameter only works for logged in users.
 					// IF you have set a cookie locally this will be overriden.
 					$value = $valueRequest !== null ? self::resolveNightModeQueryValue( $valueRequest ) :
-						$this->getUserPreferenceValue( CONSTANTS::PREF_KEY_NIGHT_MODE );
+						$this->getUserPreferenceValue( Constants::PREF_KEY_NIGHT_MODE );
 					$suffixEnabled = 'clientpref-' . $value;
 					$suffixDisabled = 'clientpref-day';
 					// Must be hardcoded to 'skin-theme-' to be consistent with Minerva
@@ -206,18 +206,18 @@ class FeatureManager {
 					$prefix .= 'skin-theme-';
 					break;
 				// These features persist for all users and have two valid states: 0 and 1.
-				case CONSTANTS::FEATURE_LIMITED_WIDTH:
-				case CONSTANTS::FEATURE_TOC_PINNED:
-				case CONSTANTS::FEATURE_APPEARANCE_PINNED:
+				case Constants::FEATURE_LIMITED_WIDTH:
+				case Constants::FEATURE_TOC_PINNED:
+				case Constants::FEATURE_APPEARANCE_PINNED:
 					$suffixEnabled = 'clientpref-1';
 					$suffixDisabled = 'clientpref-0';
 					break;
 				// These features only persist for logged in users so do not contain the clientpref suffix.
 				// These features have two valid states: enabled and disabled. In future it would be nice if these
 				// were 0 and 1 so that the features.js module cannot be applied to server side only flags.
-				case CONSTANTS::FEATURE_LANGUAGE_IN_MAIN_MENU:
-				case CONSTANTS::FEATURE_MAIN_MENU_PINNED:
-				case CONSTANTS::FEATURE_PAGE_TOOLS_PINNED:
+				case Constants::FEATURE_LANGUAGE_IN_MAIN_MENU:
+				case Constants::FEATURE_MAIN_MENU_PINNED:
+				case Constants::FEATURE_PAGE_TOOLS_PINNED:
 				// Server side only feature flags.
 				// Note these classes are fixed and cannot be changed at runtime by JavaScript,
 				// only via modification to LocalSettings.php.

@@ -59,7 +59,7 @@ class ConfigHelper {
 			return $exclusions[ 'mainpage' ] ?? false;
 		}
 		if ( $canonicalTitle && $canonicalTitle->isSpecialPage() ) {
-			[ $canonicalName, $par ] = $this->specialPageFactory->resolveAlias( $canonicalTitle->getDBKey() );
+			[ $canonicalName, $par ] = $this->specialPageFactory->resolveAlias( $canonicalTitle->getDBkey() );
 			if ( $canonicalName ) {
 				$canonicalTitle = Title::makeTitle( NS_SPECIAL, $canonicalName );
 			}
