@@ -107,6 +107,7 @@ class VectorComponentPageToolbar implements VectorComponent {
 			VectorComponentPageTools::ID . '-dropdown',
 			$this->msg( 'toolbox' )->text(),
 			VectorComponentPageTools::ID . '-dropdown',
+			'verticalEllipsis'
 		);
 		$pageToolsMenu = new VectorComponentPageTools(
 			array_merge( [ $portlets['data-actions'] ?? [] ], $pageToolsMenu ),
