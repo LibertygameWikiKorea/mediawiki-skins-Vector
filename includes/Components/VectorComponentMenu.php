@@ -64,14 +64,19 @@ class VectorComponentMenu implements VectorComponent, Countable {
 	 *
 	 * @param array $menuItems
 	 * @param array $menuItemStyles all menu items will use these styles unless there's an item specific override
-	 * @param array $menuItemStyleOverrides styles for individual menu items keyed by item id
+	 * @param array $menuItemStyleOverrides styles for individual menu items keyed by item id.
+	 *   A menu item can be removed if it is set to "false"
 	 * @return array
 	 */
 	private static function updateMenuItemStyles( $menuItems, $menuItemStyles, $menuItemStyleOverrides ) {
-		return array_map( static function ( $item ) use ( $menuItemStyles, $menuItemStyleOverrides ) {
+		$menuItems = array_map( static function ( $item ) use ( $menuItemStyles, $menuItemStyleOverrides ) {
 			$id = $item['id'];
 			$hasOverrides = $id && isset( $menuItemStyleOverrides[ $id ] );
 			$styles = $hasOverrides ? $menuItemStyleOverrides[ $id ] : $menuItemStyles;
+
+			if ( $styles === false ) {
+				return null;
+			}
 
 			$isCollapsible = $styles['collapsible'] ?? false;
 			// collapsible class is added to the item (LI element) class
@@ -116,6 +121,14 @@ class VectorComponentMenu implements VectorComponent, Countable {
 			}, $item['array-links'] ?? [] );
 			return $item;
 		}, $menuItems );
+		return array_values(
+			array_filter(
+				$menuItems,
+				static function ( $view ) {
+					return $view !== null;
+				}
+			)
+		);
 	}
 
 	/**

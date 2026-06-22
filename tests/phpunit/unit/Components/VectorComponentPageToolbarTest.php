@@ -209,7 +209,43 @@ class VectorComponentPageToolbarTest extends VectorComponentSnapshotTestCase {
 				],
 				[],
 				true,
-				'page-toolbar-move-ca-addsection.json'
+				'page-toolbar-move-ca-addsection.json',
+				true
+			],
+			[
+				[
+					'data-views' => [
+						'id' => 'p-views',
+						'class' => 'foo',
+						'array-items' => [
+							[
+								'id' => 'ca-edit',
+								'class' => '',
+								'array-links' => [
+									[
+										'array-attributes' => [],
+										'text' => 'edit',
+									]
+								],
+							],
+							[
+								'id' => 'ca-addsection',
+								'class' => '',
+								'array-links' => [
+									[
+										'icon' => 'bellOutline',
+										'array-attributes' => [],
+										'text' => 'edit',
+									]
+								],
+							],
+						],
+					],
+				],
+				[],
+				true,
+				'page-toolbar-dontmove-ca-addsection.json',
+				false
 			],
 		];
 	}
@@ -218,7 +254,13 @@ class VectorComponentPageToolbarTest extends VectorComponentSnapshotTestCase {
 	 * @covers ::getTemplateData
 	 * @dataProvider provideGetTemplateData
 	 */
-	public function testGetTemplateData( $portletData, $sidebar, $isFeatureEnabled, $snapshotName ) {
+	public function testGetTemplateData(
+		array $portletData,
+		array $sidebar,
+		bool $isFeatureEnabled,
+		string $snapshotName,
+		bool $isAddTopic = false
+	) {
 		$localizer = $this->createMock( MessageLocalizer::class );
 		$localizer->method( 'msg' )->willReturnCallback( function ( $key, ...$params ) {
 			$msg = $this->createMock( Message::class );
@@ -232,7 +274,8 @@ class VectorComponentPageToolbarTest extends VectorComponentSnapshotTestCase {
 			$localizer,
 			$featureManager,
 			$portletData,
-			$sidebar
+			$sidebar,
+			$isAddTopic
 		);
 		$data = $vectorComponentPageToolbar->getTemplateData();
 		$this->assertEqualsSnapshot(
