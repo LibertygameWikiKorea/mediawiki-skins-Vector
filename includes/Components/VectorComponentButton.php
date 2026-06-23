@@ -3,6 +3,7 @@ namespace MediaWiki\Skins\Vector\Components;
 
 /**
  * VectorSearchBox component
+ * TODO: Update to accept a VectorComponentIcon param instead of icon name
  */
 class VectorComponentButton implements VectorComponent {
 	public function __construct(
@@ -65,7 +66,8 @@ class VectorComponentButton implements VectorComponent {
 	public function getTemplateData(): array {
 		$arrayAttributes = [];
 		foreach ( $this->attributes as $key => $value ) {
-			if ( $value === null ) {
+			// Filter out empty attributes and named attributes that are handled separately.
+			if ( $value === null || in_array( $key, [ 'id', 'class', 'href' ], true ) ) {
 				continue;
 			}
 			$arrayAttributes[] = [ 'key' => $key, 'value' => $value ];

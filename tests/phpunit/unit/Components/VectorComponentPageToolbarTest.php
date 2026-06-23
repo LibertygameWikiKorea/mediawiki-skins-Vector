@@ -177,7 +177,40 @@ class VectorComponentPageToolbarTest extends VectorComponentSnapshotTestCase {
 				[],
 				true,
 				'page-toolbar-2.json'
-			]
+			],
+			[
+				[
+					'data-views' => [
+						'id' => 'p-views',
+						'class' => 'foo',
+						'array-items' => [
+							[
+								'id' => 'ca-edit',
+								'class' => '',
+								'array-links' => [
+									[
+										'array-attributes' => [],
+										'text' => 'edit',
+									]
+								],
+							],
+							[
+								'id' => 'ca-addsection',
+								'class' => '',
+								'array-links' => [
+									[
+										'array-attributes' => [],
+										'text' => 'edit',
+									]
+								],
+							],
+						],
+					],
+				],
+				[],
+				true,
+				'page-toolbar-move-ca-addsection.json'
+			],
 		];
 	}
 
@@ -202,12 +235,9 @@ class VectorComponentPageToolbarTest extends VectorComponentSnapshotTestCase {
 			$sidebar
 		);
 		$data = $vectorComponentPageToolbar->getTemplateData();
-		// To update snapshot uncomment following line temporarily.
-		// $this->updateSnapshot( $snapshotName, $data );
 		$this->assertEqualsSnapshot(
 			$snapshotName,
-			$data,
-			'If failing update snapshot. See instructions in test.'
+			$data
 		);
 	}
 }

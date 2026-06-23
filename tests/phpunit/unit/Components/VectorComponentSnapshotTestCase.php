@@ -29,12 +29,22 @@ class VectorComponentSnapshotTestCase extends MediaWikiUnitTestCase {
 		file_put_contents( $snapshotPath, json_encode( $data, JSON_PRETTY_PRINT ) );
 	}
 
-	public function assertEqualsSnapshot( $snapshotName, $data, $msg ) {
+	public function assertEqualsSnapshot( $snapshotName, $data, $msg = '' ) {
 		$snapshotPath = __DIR__ . '/__snapshots__/' . $snapshotName;
+
+		// Update snapshot if --update-snapshots flag is set via environment variable
+		if ( getenv( 'PHPUNIT_UPDATE_SNAPSHOTS' ) ) {
+			$this->updateSnapshot( $snapshotName, $data );
+		}
+
+		$actualData = file_exists( $snapshotPath ) ?
+			json_decode( file_get_contents( $snapshotPath ), true ) : [];
+
 		$this->assertEquals(
-			json_decode( file_get_contents( $snapshotPath ), true ),
+			$actualData,
 			$data,
-			$msg
+			$msg . ' If changes are expected, update snapshot by running: '
+				. '`PHPUNIT_UPDATE_SNAPSHOTS=1 composer phpunit:unit`'
 		);
 	}
 }

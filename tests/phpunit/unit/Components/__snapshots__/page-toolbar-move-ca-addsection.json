@@ -17,34 +17,13 @@
                 ]
             },
             {
-                "id": "ca-unwatch",
-                "class": "",
+                "id": "ca-addsection",
+                "class": "user-links-collapsible-item vector-menu-item--collapsible vector-tab-noicon",
                 "array-links": [
                     {
-                        "data-button": {
-                            "label": "watch",
-                            "icon": "unStar",
-                            "id": "",
-                            "class": "cdx-button cdx-button--weight-quiet cdx-button--action-progressive",
-                            "href": "",
-                            "array-attributes": []
-                        }
-                    }
-                ]
-            },
-            {
-                "id": "ca-bookmark",
-                "class": "",
-                "array-links": [
-                    {
-                        "data-button": {
-                            "label": "bookmark",
-                            "icon": "bookmark",
-                            "id": "",
-                            "class": "cdx-button cdx-button--weight-quiet cdx-button--icon-only",
-                            "href": "",
-                            "array-attributes": []
-                        }
+                        "array-attributes": [],
+                        "text": "edit",
+                        "icon": false
                     }
                 ]
             }
@@ -88,29 +67,12 @@
                     ]
                 },
                 {
-                    "id": "ca-unwatch",
+                    "id": "ca-addsection",
                     "class": "",
                     "array-links": [
                         {
-                            "icon": "unStar",
                             "array-attributes": [],
-                            "text": "watch"
-                        }
-                    ]
-                },
-                {
-                    "id": "ca-bookmark",
-                    "class": "",
-                    "array-links": [
-                        {
-                            "array-attributes": [
-                                {
-                                    "key": "class",
-                                    "value": ""
-                                }
-                            ],
-                            "icon": "bookmark",
-                            "text": "bookmark"
+                            "text": "edit"
                         }
                     ]
                 }

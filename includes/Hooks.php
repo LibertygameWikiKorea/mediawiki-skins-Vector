@@ -189,27 +189,6 @@ class Hooks implements
 	}
 
 	/**
-	 * @internal used inside ::updateUserLinksDropdownItems
-	 * @param array $content_navigation
-	 * @return bool
-	 */
-	private static function isReadingListEnabled( $content_navigation ) {
-		return isset( $content_navigation['user-menu']['readinglists'] );
-	}
-
-	/**
-	 * Make an icon
-	 *
-	 * @internal for use inside Vector skin.
-	 * @param string $name
-	 * @return string of HTML
-	 */
-	private static function makeIcon( $name ) {
-		// Html::makeLink will pass this through rawElement
-		return '<span class="vector-icon mw-ui-icon-' . $name . ' mw-ui-icon-wikimedia-' . $name . '"></span>';
-	}
-
-	/**
 	 * Vector 2022 only:
 	 * Creates an additional menu that will be injected inside the more (cactions)
 	 * dropdown menu. This menu is a clone of `views` and this menu will only be

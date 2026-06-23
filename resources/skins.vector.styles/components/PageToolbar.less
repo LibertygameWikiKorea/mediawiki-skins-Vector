@@ -15,16 +15,6 @@
 			}
 		}
 	}
-
-	// Reduce icon size for icon buttons in the page toolbar (i.e. watchstar, wikilove)
-	.vector-icon {
-		.cdx-mixin-css-icon-background( @size-icon-small );
-		.cdx-mixin-css-icon-size( @size-icon-small );
-		.cdx-mixin-css-icon-alignment( );
-
-		// Temporary fix for https://phabricator.wikimedia.org/T356540
-		background-size: ~'calc( max( @{size-icon-small}, @{min-size-icon-small} ) )';
-	}
 }
 
 // ID Selectors outside of .vector-page-toolbar-container to avoid over-specificity.

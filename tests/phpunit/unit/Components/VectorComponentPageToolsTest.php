@@ -131,12 +131,9 @@ class VectorComponentPageToolsTest extends VectorComponentSnapshotTestCase {
 			$featureManager
 		);
 		$data = $pageTools->getTemplateData();
-		// To update snapshot uncomment following line temporarily.
-		// $this->updateSnapshot( $snapshotName, $data );
 		$this->assertEqualsSnapshot(
 			$snapshotName,
-			$data,
-			'If failing update snapshot. See instructions in test.'
+			$data
 		);
 	}
 }
