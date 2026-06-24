@@ -8,10 +8,9 @@
 
 	// Expand watchstar and wikilove links it to cover full touch area
 	.mw-list-item {
-		.cdx-button {
-			// Align small icons with the bottom of the tabs.
-			margin: 1px 0 0;
-		}
+		// Only apply no wrap
+		white-space: nowrap;
+		margin-bottom: 0; /* overrides default `li` styling */
 
 		// Override button styles in the page toolbar to match the styles of the tabs in the titlebar
 		// Except bookmark icon
@@ -31,17 +30,28 @@
 		}
 	}
 
-	/* focus and hover have outlines. Text underline interferes with bottom border */
+	/* Tab list item appearance. Applies to <li>'s inside .vector-menu-tabs */
 	.mw-list-item.vector-tab-noicon {
+		margin: 0 @padding-horizontal-tabs;
+
+		a {
+			display: inline-flex;
+			position: relative;
+			cursor: pointer;
+			// Top & bottom padding to increase clickable area.
+			padding: @padding-vertical-tabs;
+			// bottom margin to overlap border with toolbar border.
+			margin-bottom: -1px;
+			/* T361841 add invisible bottom border by default */
+			border-bottom: 2px @border-style-base @border-color-transparent;
+		}
+
+		/* focus and hover have outlines. Text underline interferes with bottom border */
 		a:focus,
 		a:hover {
 			text-decoration: none;
+			border-bottom: 2px @border-style-base;
 		}
-	}
-
-	/* T361841 add invisible bottom border by default */
-	.mw-list-item.vector-tab-noicon a {
-		border-bottom: 2px @border-style-base @border-color-transparent;
 	}
 
 	// T316574 Override visited link styles
@@ -60,51 +70,9 @@
 	}
 }
 
-/**
- * Tab list item appearance. Applies to both <li>'s inside .vector-menu-tabs
- * and dropdown menus inside the article toolbar
- */
-.vector-menu-tabs .mw-list-item.vector-tab-noicon,
-.vector-page-toolbar-container .vector-dropdown {
-	margin: 0 @padding-horizontal-tabs;
-}
-
-.vector-menu-tabs .mw-list-item,
-.vector-page-toolbar-container .vector-dropdown-label {
-	// Only apply no wrap
-	white-space: nowrap;
-}
-
-.vector-menu-tabs .mw-list-item,
-.vector-page-toolbar-container .vector-dropdown {
-	float: left;
-	margin-bottom: 0; /* overrides default `li` styling */
-
-	// target links inside of .vector-tab-menu
-	// and dropdown toggles inside the article toolbar.
-	// NOTE: Consider adding a single selector to define both items,
-	// since they both appear beside each other in the article toolbar.
-	& > a,
-	.vector-dropdown-label {
-		display: inline-flex;
-		position: relative;
-		cursor: pointer;
-		font-weight: normal;
-	}
-
-	.vector-dropdown-label {
-		// For better compatibility with gadgets (like Twinkle) that append
-		// <H3> elements as dropdown headings (which was the convention in legacy Vector).
-		font-size: inherit;
-		// Override button styles on dropdown toggle button
-		border: 0;
-	}
-
-	&.vector-tab-noicon > a,
-	.vector-dropdown-label {
-		// Top & bottom padding to increase clickable area.
-		padding: @padding-vertical-tabs;
-		// bottom margin to overlap border with toolbar border.
-		margin-bottom: -1px;
-	}
+// Flexbox styles
+.vector-menu-tabs .vector-menu-content-list,
+#left-navigation nav {
+	display: flex;
+	flex-direction: row;
 }

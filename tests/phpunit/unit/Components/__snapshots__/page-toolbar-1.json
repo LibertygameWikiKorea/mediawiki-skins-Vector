@@ -22,8 +22,8 @@
     "data-page-tools-dropdown": {
         "id": "vector-page-tools-dropdown",
         "label": "toolbox",
-        "label-class": "cdx-button cdx-button--fake-button cdx-button--fake-button--enabled cdx-button--weight-quiet",
-        "icon": null,
+        "label-class": "cdx-button cdx-button--fake-button cdx-button--fake-button--enabled cdx-button--weight-quiet cdx-button--icon-only ",
+        "icon": "verticalEllipsis",
         "html-vector-menu-label-attributes": "",
         "html-vector-menu-checkbox-attributes": "",
         "class": "vector-page-tools-dropdown",
