@@ -24,8 +24,9 @@
 				.cdx-mixin-css-icon-size( @size-icon-small );
 				.cdx-mixin-css-icon-alignment( );
 
-				// Temporary fix for https://phabricator.wikimedia.org/T356540
-				background-size: ~'calc( max( @{size-icon-small}, @{min-size-icon-small} ) )';
+				// Override Codex icon size to make the icon the same height as the text
+				/* stylelint-disable-next-line declaration-no-important */
+				mask-size: @font-size-small !important;
 			}
 		}
 	}
