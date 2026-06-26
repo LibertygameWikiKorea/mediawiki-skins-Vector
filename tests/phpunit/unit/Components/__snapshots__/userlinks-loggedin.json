@@ -22,7 +22,7 @@
                 "name": "watchlist",
                 "html": "Watchlist",
                 "id": "pt-watchlist-2",
-                "class": " user-links-collapsible-item vector-menu-item--collapsible",
+                "class": " vector-menu-item--collapsible",
                 "array-links": [
                     {
                         "data-button": {
@@ -87,7 +87,7 @@
                     "name": "watchlist",
                     "html": "Watchlist",
                     "id": "pt-watchlist",
-                    "class": " user-links-collapsible-item vector-menu-item--collapsible",
+                    "class": " vector-menu-item--collapsible",
                     "array-links": [
                         {
                             "icon": "watchlist",

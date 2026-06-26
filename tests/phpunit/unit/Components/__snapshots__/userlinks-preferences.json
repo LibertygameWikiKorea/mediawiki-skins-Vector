@@ -33,7 +33,7 @@
                 "name": "uls",
                 "html": "English",
                 "id": "ca-uls",
-                "class": "mw-list-item user-links-collapsible-item vector-menu-item--collapsible",
+                "class": "mw-list-item vector-menu-item--collapsible",
                 "array-links": [
                     {
                         "data-button": {
@@ -71,7 +71,7 @@
         "icon": "testAvatar",
         "html-vector-menu-label-attributes": "",
         "html-vector-menu-checkbox-attributes": "",
-        "class": "vector-user-menu vector-button-flush-right vector-user-menu-logged-out vector-user-links-dropdown--collapsible user-links-collapsible-item--none",
+        "class": "vector-user-menu vector-button-flush-right vector-user-menu-logged-out vector-user-links-dropdown--collapsible--none",
         "html-tooltip": " title=\"vector-personal-tools-tooltip\"",
         "checkbox-class": ""
     },

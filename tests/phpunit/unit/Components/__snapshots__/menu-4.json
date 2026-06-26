@@ -4,7 +4,7 @@
         "name": "link1",
         "html": "<a>link1<\/a>",
         "id": "link-1",
-        "class": " user-links-collapsible-item vector-menu-item--collapsible",
+        "class": " vector-menu-item--collapsible",
         "array-links": [
             {
                 "data-button": {
@@ -23,7 +23,7 @@
         "name": "link2",
         "html": "<a>link2<\/a>",
         "id": "link-2",
-        "class": " user-links-collapsible-item vector-menu-item--collapsible",
+        "class": " vector-menu-item--collapsible",
         "array-links": [
             {
                 "data-button": {
