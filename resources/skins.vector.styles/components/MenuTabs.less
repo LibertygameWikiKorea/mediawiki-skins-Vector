@@ -17,6 +17,11 @@
 		.cdx-button:not( .cdx-button--icon-only ) {
 			gap: 3px;
 			padding: 0 @padding-horizontal-tabs;
+			margin-top: 1px;
+
+			@supports ( -moz-appearance: none ) {
+				margin-top: 0;
+			}
 
 			// Reduce icon size for icon in the page toolbar (i.e. watchstar, wikilove)
 			.vector-icon {

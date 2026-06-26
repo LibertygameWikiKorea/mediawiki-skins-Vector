@@ -26,7 +26,8 @@ class VectorComponentPageToolbar implements VectorComponent {
 		private readonly MessageLocalizer $localizer,
 		private readonly FeatureManager $featureManager,
 		private readonly array $portletData,
-		private readonly array $sidebar
+		private readonly array $sidebar,
+		private readonly bool $isAddTopicPromoted = false
 	) {
 	}
 
@@ -66,6 +67,9 @@ class VectorComponentPageToolbar implements VectorComponent {
 	 * Creates a toolbar actions menu using data-views
 	 * ensuring only watch, wikilove and bookmark appear
 	 * with icons.
+	 *
+	 * If wgVectorPromoteAddTopic is set the add section item
+	 * is removed at it is being rendered outside the component.
 	 */
 	private function getToolbarActions(): array {
 		$views = $this->portletData['data-views'] ?? [];
@@ -86,6 +90,7 @@ class VectorComponentPageToolbar implements VectorComponent {
 				'icon' => false,
 			],
 			[
+				'ca-addsection' => $this->isAddTopicPromoted ? false : null,
 				'ca-unwatch' => self::ICON_BUTTON,
 				'ca-watch' => self::ICON_BUTTON,
 				'ca-wikilove' => self::ICON_ONLY_BUTTON,

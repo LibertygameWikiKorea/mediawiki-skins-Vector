@@ -118,26 +118,21 @@ class SkinVector22 extends SkinMustache {
 	}
 
 	/**
-	 * Remove the add topic button from data-views if present
+	 * Check if the add topic button should be promoted according to
+	 * existing site configuration.
 	 *
 	 * @param array &$parentData Template data
-	 * @return bool An add topic button was removed
+	 * @return bool the add topic button is present and can be promoted.
 	 */
-	private function removeAddTopicButton( array &$parentData ): bool {
-		$views = $parentData['data-portlets']['data-views']['array-items'];
-		$hasAddTopicButton = false;
-		$html = '';
-		foreach ( $views as $i => $view ) {
-			if ( $view['id'] === 'ca-addsection' ) {
-				array_splice( $views, $i, 1 );
-				$hasAddTopicButton = true;
-				continue;
-			}
-			$html .= $view['html-item'];
-		}
-		$parentData['data-portlets']['data-views']['array-items'] = $views;
-		$parentData['data-portlets']['data-views']['html-items'] = $html;
-		return $hasAddTopicButton;
+	private function isAddTopicButtonPromotable( array &$parentData ): bool {
+		return $this->getConfig()->get( 'VectorPromoteAddTopic' ) &&
+			in_array(
+				'ca-addsection',
+				array_column(
+					$parentData['data-portlets']['data-views']['array-items'], 'id'
+				),
+				true
+			);
 	}
 
 	private function getFeatureManager(): FeatureManager {
@@ -312,8 +307,7 @@ class SkinVector22 extends SkinMustache {
 
 		$sidebar = $parentData[ 'data-portlets-sidebar' ];
 
-		$hasAddTopicButton = $config->get( 'VectorPromoteAddTopic' ) &&
-			$this->removeAddTopicButton( $parentData );
+		$hasAddTopicButton = $this->isAddTopicButtonPromotable( $parentData );
 
 		$langButtonClass = $langData['class'] ?? '';
 		$ulsLabels = $this->getULSLabels();
@@ -444,7 +438,8 @@ class SkinVector22 extends SkinMustache {
 				$localizer,
 				$featureManager,
 				$portlets,
-				$sidebar
+				$sidebar,
+				$hasAddTopicButton
 			),
 			'data-appearance' => new VectorComponentAppearance( $localizer, $featureManager ),
 			'data-appearance-dropdown' => new VectorComponentDropdown(
