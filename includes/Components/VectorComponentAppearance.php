@@ -35,7 +35,9 @@ class VectorComponentAppearance implements VectorComponent {
 			// Name
 			self::ID,
 			// Feature name
-			'appearance-pinned'
+			'appearance-pinned',
+			'vector-unpin-element-aria-label',
+			'vector-pin-element-aria-label'
 		);
 
 		$data = $pinnableElement->getTemplateData() +

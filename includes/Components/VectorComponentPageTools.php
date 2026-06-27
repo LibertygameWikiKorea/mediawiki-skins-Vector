@@ -37,7 +37,9 @@ class VectorComponentPageTools implements VectorComponent {
 			// Name
 			self::ID,
 			// Feature name
-			'page-tools-pinned'
+			'page-tools-pinned',
+			'vector-unpin-element-aria-label',
+			'vector-pin-element-aria-label'
 		);
 	}
 

@@ -36,7 +36,9 @@ class VectorComponentMainMenu implements VectorComponent {
 			$this->localizer,
 			$this->isPinned,
 			self::ID,
-			'main-menu-pinned'
+			'main-menu-pinned',
+			'vector-unpin-element-aria-label',
+			'vector-pin-element-aria-label'
 		);
 	}
 

@@ -72,6 +72,8 @@ class VectorComponentAppearanceTest extends MediaWikiUnitTestCase {
 				'label-tag-name' => 'div',
 				'pin-label' => 'vector-pin-element-label-mocked-label',
 				'unpin-label' => 'vector-unpin-element-label-mocked-label',
+				'pin-aria-label' => 'vector-pin-element-aria-label-mocked-label',
+				'unpin-aria-label' => 'vector-unpin-element-aria-label-mocked-label',
 				// The data-pinnable-element-id is set to 'vector-appearance'
 				'data-pinnable-element-id' => 'vector-appearance',
 				// The data-feature-name is set to 'appearance-pinned'
@@ -127,6 +129,8 @@ class VectorComponentAppearanceTest extends MediaWikiUnitTestCase {
 				'label-tag-name' => 'div',
 				'pin-label' => 'vector-pin-element-label-mocked-label',
 				'unpin-label' => 'vector-unpin-element-label-mocked-label',
+				'pin-aria-label' => 'vector-pin-element-aria-label-mocked-label',
+				'unpin-aria-label' => 'vector-unpin-element-aria-label-mocked-label',
 				// The data-pinnable-element-id is set to 'vector-appearance'
 				'data-pinnable-element-id' => 'vector-appearance',
 				// The data-feature-name is set to 'appearance-pinned'
