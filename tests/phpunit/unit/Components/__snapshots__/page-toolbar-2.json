@@ -7,7 +7,7 @@
         "array-list-items": [
             {
                 "id": "ca-edit",
-                "class": "user-links-collapsible-item vector-menu-item--collapsible vector-tab-noicon",
+                "class": "vector-menu-item--collapsible vector-tab-noicon",
                 "array-links": [
                     {
                         "array-attributes": [],

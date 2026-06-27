@@ -54,12 +54,10 @@ class SkinVector22 extends SkinMustache {
 		parent::runOnSkinTemplateNavigationHooks( $skin, $content_navigation );
 		$userPage = $content_navigation['user-page']['userpage'] ?? null;
 		if ( $userPage ) {
-			// TODO: Remove user-links-collapsible-item after
-			// I12cdb5c2a3dff638d59066b2c2c9597133855dee is in prod for 2 weeks
 			if ( isset( $userPage['class'] ) ) {
-				$userPage['class'] .= ' vector-menu-item--collapsible user-links-collapsible-item';
+				$userPage['class'] .= ' vector-menu-item--collapsible';
 			} else {
-				$userPage['class'] = ' vector-menu-item--collapsible user-links-collapsible-item';
+				$userPage['class'] = ' vector-menu-item--collapsible';
 			}
 
 			$content_navigation['user-menu'] = [

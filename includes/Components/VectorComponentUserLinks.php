@@ -12,8 +12,7 @@ use MediaWiki\User\UserNameUtils;
  * VectorComponentUserLinks component
  */
 class VectorComponentUserLinks implements VectorComponent {
-	// TODO: Remove user-links-collapsible-item after I12cdb5c2a3dff638d59066b2c2c9597133855dee is in prod for 2 weeks
-	private const COLLAPSIBLE_CLASS = 'vector-user-links-dropdown--collapsible user-links-collapsible-item';
+	private const COLLAPSIBLE_CLASS = 'vector-user-links-dropdown--collapsible';
 	private const ACCOUNT_MENU_ITEM_KEYS = [
 		'createaccount',
 		'login',

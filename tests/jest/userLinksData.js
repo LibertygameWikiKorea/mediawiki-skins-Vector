@@ -25,19 +25,19 @@ const templateData = {
 	'data-user-links-preferences': {
 		id: 'p-personal-preferences',
 		class: '',
-		'html-items': '<li id="ca-uls" class="user-links-collapsible-item mw-list-item active"><a href="#" class="uls-trigger cdx-button cdx-button--weight-quiet"><span class="vector-icon mw-ui-icon-wikimedia-language"></span> <span>English</span></a></li>'
+		'html-items': '<li id="ca-uls" class="vector-menu-item--collapsible mw-list-item active"><a href="#" class="uls-trigger cdx-button cdx-button--weight-quiet"><span class="vector-icon mw-ui-icon-wikimedia-language"></span> <span>English</span></a></li>'
 	},
 	'data-user-links-user-page': {
 		id: 'p-personal-user-page',
 		class: '',
-		'html-items': '<li id="pt-userpage-2" class="user-links-collapsible-item mw-list-item"><a href="/wiki/User:Admin" class="cdx-button cdx-button--weight-quiet" title="Your user page [⌃⌥.]" accesskey="."><span>Admin</span></a></li>'
+		'html-items': '<li id="pt-userpage-2" class="vector-menu-item--collapsible mw-list-item"><a href="/wiki/User:Admin" class="cdx-button cdx-button--weight-quiet" title="Your user page [⌃⌥.]" accesskey="."><span>Admin</span></a></li>'
 	},
 	'data-user-links-overflow': {
 		id: 'p-personal-more',
 		class: 'mw-portlet mw-portlet-vector-user-menu-overflow vector-user-menu-overflow',
 		label: 'Toggle sidebar',
 		'html-items': `
-			<li id="pt-watchlist-2" class="user-links-collapsible-item mw-list-item"><a href="/wiki/Special:Watchlist" class="cdx-button cdx-button--weight-quiet vector-icon cdx-button--icon-only mw-ui-icon-watchlist mw-ui-icon-wikimedia-watchlist" title="A list of pages you are monitoring for changes [⌃⌥l]" accesskey="l"><span>Watchlist</span></a></li>
+			<li id="pt-watchlist-2" class="vector-menu-item--collapsible mw-list-item"><a href="/wiki/Special:Watchlist" class="cdx-button cdx-button--weight-quiet vector-icon cdx-button--icon-only mw-ui-icon-watchlist mw-ui-icon-wikimedia-watchlist" title="A list of pages you are monitoring for changes [⌃⌥l]" accesskey="l"><span>Watchlist</span></a></li>
 		`
 	},
 	'data-user-links-dropdown': {
@@ -49,12 +49,12 @@ const templateData = {
 		class: 'mw-portlet mw-portlet-personal',
 		id: 'p-personal',
 		'html-items': `
-			<li id="pt-userpage" class="user-links-collapsible-item mw-list-item"><a href="/wiki/User:Admin" title="Your user page [.]" accesskey="."><span class="vector-icon mw-ui-icon-userAvatar mw-ui-icon-wikimedia-userAvatar"></span> <span>Admin</span></a></li>
+			<li id="pt-userpage" class="vector-menu-item--collapsible mw-list-item"><a href="/wiki/User:Admin" title="Your user page [.]" accesskey="."><span class="vector-icon mw-ui-icon-userAvatar mw-ui-icon-wikimedia-userAvatar"></span> <span>Admin</span></a></li>
 			<li id="pt-mytalk" class="mw-list-item"><a href="/wiki/User_talk:Admin" title="Your talk page [n]" accesskey="n"><span class="vector-icon mw-ui-icon-userTalk mw-ui-icon-wikimedia-userTalk"></span> <span>Talk</span></a></li>
 			<li id="pt-sandbox" class="new mw-list-item"><a href="/w/index.php?title=User:Admin/sandbox&amp;action=edit&amp;redlink=1" title="Your sandbox (page does not exist)"><span class="vector-icon mw-ui-icon-sandbox mw-ui-icon-wikimedia-sandbox"></span> <span>Sandbox</span></a></li>
 			<li id="pt-preferences" class="mw-list-item"><a href="/wiki/Special:Preferences" title="Your preferences"><span class="vector-icon mw-ui-icon-appearance mw-ui-icon-wikimedia-appearance"></span> <span>Preferences</span></a></li>
 			<li id="pt-betafeatures" class="mw-list-item"><a href="/wiki/Special:Preferences#mw-prefsection-betafeatures" title="Beta features"><span class="vector-icon mw-ui-icon-labFlask mw-ui-icon-wikimedia-labFlask"></span> <span>Beta</span></a></li>
-			<li id="pt-watchlist" class="user-links-collapsible-item mw-list-item"><a href="/wiki/Special:Watchlist" title="A list of pages you are monitoring for changes [l]" accesskey="l"><span class="vector-icon mw-ui-icon-watchlist mw-ui-icon-wikimedia-watchlist"></span> <span>Watchlist</span></a></li>
+			<li id="pt-watchlist" class="vector-menu-item--collapsible mw-list-item"><a href="/wiki/Special:Watchlist" title="A list of pages you are monitoring for changes [l]" accesskey="l"><span class="vector-icon mw-ui-icon-watchlist mw-ui-icon-wikimedia-watchlist"></span> <span>Watchlist</span></a></li>
 			<li id="pt-uploads" class="mw-list-item"><a href="/w/index.php?title=Special:ListFiles/Admin&amp;ilshowall=1" title="List of files you have uploaded"><span class="vector-icon mw-ui-icon-imageGallery mw-ui-icon-wikimedia-imageGallery"></span> <span>Uploads</span></a></li>
 			<li id="pt-mycontris" class="mw-list-item"><a href="/wiki/Special:Contributions/Admin" title="A list of your contributions [y]" accesskey="y"><span class="vector-icon mw-ui-icon-userContributions mw-ui-icon-wikimedia-userContributions"></span> <span>Contributions</span></a></li>
 			<li id="pt-custom" class="mw-list-item mw-list-item-js">Gadget added item</li>

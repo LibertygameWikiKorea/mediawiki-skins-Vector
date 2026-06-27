@@ -7,8 +7,7 @@ use Countable;
  * VectorComponentMenu component
  */
 class VectorComponentMenu implements VectorComponent, Countable {
-	// TODO: Remove user-links-collapsible-item after I12cdb5c2a3dff638d59066b2c2c9597133855dee is in prod for 2 weeks
-	public const COLLAPSIBLE_CLASS = 'user-links-collapsible-item vector-menu-item--collapsible';
+	public const COLLAPSIBLE_CLASS = 'vector-menu-item--collapsible';
 
 	/**
 	 * @param array $data menu data

@@ -22,7 +22,7 @@
                 "name": "login",
                 "html": "Login",
                 "id": "pt-login-2",
-                "class": "mw-list-item user-links-collapsible-item vector-menu-item--collapsible",
+                "class": "mw-list-item vector-menu-item--collapsible",
                 "array-links": [
                     {
                         "icon": null,
@@ -75,7 +75,7 @@
         "icon": "testAvatar",
         "html-vector-menu-label-attributes": "",
         "html-vector-menu-checkbox-attributes": "",
-        "class": "vector-user-menu vector-button-flush-right vector-user-menu-logged-out vector-user-links-dropdown--collapsible user-links-collapsible-item",
+        "class": "vector-user-menu vector-button-flush-right vector-user-menu-logged-out vector-user-links-dropdown--collapsible",
         "html-tooltip": " title=\"vector-personal-tools-tooltip\"",
         "checkbox-class": ""
     },
@@ -114,7 +114,7 @@
                     "name": "login",
                     "html": "Login",
                     "id": "pt-login",
-                    "class": "mw-list-item user-links-collapsible-item vector-menu-item--collapsible",
+                    "class": "mw-list-item vector-menu-item--collapsible",
                     "array-links": [
                         {
                             "icon": "user",
