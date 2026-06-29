@@ -54,26 +54,6 @@ Do not rely on any of the feature flags documented here. They should not be cons
 
   - Removal ticket: [https://phabricator.wikimedia.org/T331312](https://phabricator.wikimedia.org/T331312)
 
-- wgVectorDefaultSkinVersionForExistingAccounts
-
-  - Sets the default skin version for existing accounts in Vector skin. Exists to assist roll out of desktop improvements project.
-
-  - Default: `'2'`
-
-  - `legacy-vector` set to `'1'`.
-
-  - Removal ticket:  [https://phabricator.wikimedia.org/T358273](https://phabricator.wikimedia.org/T358273)
-
-- wgVectorDefaultSkinVersionForNewAccounts
-
-  - Sets the default skin version for new accounts in Vector skin. Exists to assist roll out of desktop improvements project.
-
-  - Default: `'2'`
-
-  - `legacy-vector` set to `'1'`.
-
-  - Removal ticket: [https://phabricator.wikimedia.org/T358273](https://phabricator.wikimedia.org/T358273)
-
 - wgVectorLanguageInMainPageHeader
 
   - Shows language selector beside the main page title.

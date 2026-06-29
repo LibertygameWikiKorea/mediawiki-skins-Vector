@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Skins\Vector;
 
-use MediaWiki\Auth\Hook\LocalUserCreatedHook;
 use MediaWiki\Config\Config;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
@@ -23,7 +22,6 @@ use MediaWiki\User\User;
  */
 class Hooks implements
 	GetPreferencesHook,
-	LocalUserCreatedHook,
 	SkinPageReadyConfigHook
 {
 	public function __construct(
@@ -302,24 +300,6 @@ class Hooks implements
 			],
 		];
 		$prefs += $vectorPrefs;
-	}
-
-	/**
-	 * Called one time when initializing a users preferences for a newly created account.
-	 *
-	 * @param User $user Newly created user object.
-	 * @param bool $isAutoCreated
-	 */
-	public function onLocalUserCreated( $user, $isAutoCreated ) {
-		$default = $this->config->get( Constants::CONFIG_KEY_DEFAULT_SKIN_VERSION_FOR_NEW_ACCOUNTS );
-		if ( $default ) {
-			$this->userOptionsManager->setOption(
-				$user,
-				Constants::PREF_KEY_SKIN,
-				$default === Constants::SKIN_VERSION_LEGACY ?
-					Constants::SKIN_NAME_LEGACY : Constants::SKIN_NAME_MODERN
-			);
-		}
 	}
 
 	/**

@@ -22,23 +22,6 @@ final class Constants {
 	 */
 	public const SKIN_NAME_LEGACY = 'vector';
 
-	// These are used to provide different default skin for new users.
-	/**
-	 * @var string
-	 */
-	public const SKIN_VERSION_LEGACY = '1';
-	/**
-	 * @var string
-	 */
-	public const SKIN_VERSION_LATEST = '2';
-
-	// These are tightly coupled to skin.json's configs. See skin.json for documentation.
-	/**
-	 * @var string
-	 */
-	public const CONFIG_KEY_DEFAULT_SKIN_VERSION_FOR_NEW_ACCOUNTS =
-		'VectorDefaultSkinVersionForNewAccounts';
-
 	/**
 	 * @var string
 	 */
