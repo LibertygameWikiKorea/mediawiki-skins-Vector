@@ -26,7 +26,6 @@
 	string msg-vector-action-toggle-sidebar The label used by the sidebar button.
 	string msg-vector-main-menu-tooltip The title attribute for the main menu icon.
 	object data-main-menu. See MainMenu.mustache for documentation.
-	object data-footer for footer template partial. see Footer.mustache for documentation.
 }}
 <a class="mw-jump-link" href="#bodyContent">{{msg-vector-jumptocontent}}</a>
 <div class="vector-header-container">
@@ -62,7 +61,7 @@
 			{{{html-after-content}}}
 		</div>
 		<div class="mw-footer-container">
-			{{#data-footer}}{{>Footer}}{{/data-footer}}
+			{{>Footer}}
 		</div>
 	</div> {{! END mw-page-container-inner }}
 </div> {{! END mw-page-container }}

@@ -487,6 +487,13 @@ class SkinVector22 extends SkinMustache {
 			}
 		}
 
+		// Add noprint to footer-icons so they are hidden in print view.
+		// The legacy SkinComponentFooter set this via className; portlet
+		// data does not carry it.
+		if ( isset( $parentData['data-portlets']['data-footer-icons'] ) ) {
+			$parentData['data-portlets']['data-footer-icons']['class'] .= ' noprint';
+		}
+
 		return array_merge( $parentData, [
 			'is-language-in-content' => $this->isLanguagesInContent(),
 			'has-buttons-in-content-top' => $this->isLanguagesInContentAt( 'top' ) || $hasAddTopicButton,
