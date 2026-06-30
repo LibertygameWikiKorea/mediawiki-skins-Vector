@@ -1,4 +1,15 @@
 {
+    "data-associated-pages": {
+        "id": "p-associated-pages",
+        "class": "",
+        "html-items": null,
+        "array-list-items": [],
+        "label": "",
+        "html-tooltip": "",
+        "label-class": "",
+        "html-before-portal": "",
+        "html-after-portal": ""
+    },
     "data-toolbar-actions": [],
     "data-page-tools": {
         "id": "vector-page-tools",
@@ -18,7 +29,6 @@
             []
         ]
     },
-    "data-portlets": [],
     "data-page-tools-dropdown": {
         "id": "vector-page-tools-dropdown",
         "label": "toolbox",

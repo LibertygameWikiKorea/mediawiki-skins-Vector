@@ -25,8 +25,8 @@ class VectorComponentPageToolbar implements VectorComponent {
 	public function __construct(
 		private readonly MessageLocalizer $localizer,
 		private readonly FeatureManager $featureManager,
-		private readonly array $portletData,
-		private readonly array $sidebar,
+		private array $portletData,
+		private array $sidebar,
 		private readonly bool $isAddTopicPromoted = false
 	) {
 	}
@@ -37,6 +37,27 @@ class VectorComponentPageToolbar implements VectorComponent {
 	 */
 	private function msg( $key ): Message {
 		return $this->localizer->msg( $key );
+	}
+
+	/**
+	 * Promote watch link from actions to views and add an icon
+	 *
+	 * @param array &$viewsData
+	 * @param array &$actionsData
+	 */
+	private static function moveWatchLinkToViews( array &$viewsData, array &$actionsData ): void {
+		foreach ( $actionsData[ 'array-items' ] ?? [] as $action ) {
+			if ( $action[ 'name' ] === 'watch' || $action[ 'name' ] === 'unwatch' ) {
+				// Insert after history
+				$historyId = array_search( 'history', array_column( $viewsData[ 'array-items' ] ?? [], 'name' ) );
+				if ( $historyId ) {
+					array_splice( $viewsData[ 'array-items' ], $historyId + 1, 0, [ $action ] );
+					// Remove from actions
+					$actionId = array_search( $action['name'], array_column( $actionsData[ 'array-items' ], 'name' ) );
+					array_splice( $actionsData[ 'array-items' ], $actionId, 1 );
+				}
+			}
+		}
 	}
 
 	/**
@@ -70,19 +91,21 @@ class VectorComponentPageToolbar implements VectorComponent {
 	 *
 	 * If wgVectorPromoteAddTopic is set the add section item
 	 * is removed at it is being rendered outside the component.
+	 *
+	 * @param array $viewsData
+	 * @return array
 	 */
-	private function getToolbarActions(): array {
-		$views = $this->portletData['data-views'] ?? [];
-		if ( !$views ) {
+	private function getToolbarActions( array $viewsData ): array {
+		if ( !$viewsData ) {
 			return [];
 		}
 		$actionsMenu = new VectorComponentMenu(
 			[
-				'id' => $views['id'] ?? 'p-views',
-				'class' => $views['class'] ?? '',
+				'id' => $viewsData['id'] ?? 'p-views',
+				'class' => $viewsData['class'] ?? '',
 				'label' => null,
 				'html-items' => null,
-				'array-list-items' => $views['array-items'],
+				'array-list-items' => $viewsData['array-items'],
 			],
 			[
 				'class' => 'vector-tab-noicon',
@@ -100,14 +123,32 @@ class VectorComponentPageToolbar implements VectorComponent {
 		return $actionsMenu->getTemplateData();
 	}
 
+	private function getAssociatedPages(): array {
+		$associatedPages = $this->portletData['data-associated-pages'] ?? [];
+		$associatedPagesMenu = new VectorComponentMenu(
+			[
+				'id' => $associatedPages['id'] ?? 'p-associated-pages',
+				'class' => $associatedPages['class'] ?? '',
+				'html-items' => null,
+				'array-list-items' => $associatedPages['array-items'] ?? [],
+			],
+			[
+				'class' => 'vector-tab-noicon',
+			]
+		);
+		return $associatedPagesMenu->getTemplateData();
+	}
+
 	/**
 	 * @inheritDoc
 	 */
 	public function getTemplateData(): array {
-		$portlets = $this->portletData;
-		$sidebar = $this->sidebar;
-		$pageToolsMenu = [];
-		self::extractPageToolsFromSidebar( $sidebar, $pageToolsMenu );
+		$viewsData = $this->portletData['data-views'] ?? [];
+		$actionsData = $this->portletData['data-actions'] ?? [];
+		$toolbarData = [];
+		self::extractPageToolsFromSidebar( $this->sidebar, $toolbarData );
+		self::moveWatchLinkToViews( $viewsData, $actionsData );
+
 		$toolsDropdown = new VectorComponentDropdown(
 			VectorComponentPageTools::ID . '-dropdown',
 			$this->msg( 'toolbox' )->text(),
@@ -115,14 +156,14 @@ class VectorComponentPageToolbar implements VectorComponent {
 			'verticalEllipsis'
 		);
 		$pageToolsMenu = new VectorComponentPageTools(
-			array_merge( [ $portlets['data-actions'] ?? [] ], $pageToolsMenu ),
+			array_merge( [ $actionsData ], $toolbarData ),
 			$this->localizer,
 			$this->featureManager
 		);
 		return [
-			'data-toolbar-actions' => $this->getToolbarActions(),
+			'data-associated-pages' => $this->getAssociatedPages(),
+			'data-toolbar-actions' => $this->getToolbarActions( $viewsData ),
 			'data-page-tools' => $pageToolsMenu->getTemplateData(),
-			'data-portlets' => $portlets,
 			'data-page-tools-dropdown' => $toolsDropdown->getTemplateData(),
 		];
 	}

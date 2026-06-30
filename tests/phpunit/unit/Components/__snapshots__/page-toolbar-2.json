@@ -1,4 +1,15 @@
 {
+    "data-associated-pages": {
+        "id": "p-associated-pages",
+        "class": "",
+        "html-items": null,
+        "array-list-items": [],
+        "label": "",
+        "html-tooltip": "",
+        "label-class": "",
+        "html-before-portal": "",
+        "html-after-portal": ""
+    },
     "data-toolbar-actions": {
         "id": "p-views",
         "class": "foo",
@@ -71,51 +82,6 @@
         "data-menus": [
             []
         ]
-    },
-    "data-portlets": {
-        "data-views": {
-            "id": "p-views",
-            "class": "foo",
-            "array-items": [
-                {
-                    "id": "ca-edit",
-                    "class": "",
-                    "array-links": [
-                        {
-                            "array-attributes": [],
-                            "text": "edit"
-                        }
-                    ]
-                },
-                {
-                    "id": "ca-unwatch",
-                    "class": "",
-                    "array-links": [
-                        {
-                            "icon": "unStar",
-                            "array-attributes": [],
-                            "text": "watch"
-                        }
-                    ]
-                },
-                {
-                    "id": "ca-bookmark",
-                    "class": "",
-                    "array-links": [
-                        {
-                            "array-attributes": [
-                                {
-                                    "key": "class",
-                                    "value": ""
-                                }
-                            ],
-                            "icon": "bookmark",
-                            "text": "bookmark"
-                        }
-                    ]
-                }
-            ]
-        }
     },
     "data-page-tools-dropdown": {
         "id": "vector-page-tools-dropdown",
