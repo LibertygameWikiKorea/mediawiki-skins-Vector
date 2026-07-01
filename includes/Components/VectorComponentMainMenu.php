@@ -48,7 +48,7 @@ class VectorComponentMainMenu implements VectorComponent {
 		foreach ( $this->sidebarData[ 'array-portlets-rest' ] as $key => $data ) {
 			// Make sure the toolbox and everything after it is removed from
 			// the main menu, as they are instead included in page tools.
-			// See VectorComponentPageTools::extractPageToolsFromSidebar().
+			// See VectorComponentPageTools::extractToolboxFromSidebar().
 			if ( $data['id'] === VectorComponentPageTools::TOOLBOX_ID ) {
 				break;
 			}

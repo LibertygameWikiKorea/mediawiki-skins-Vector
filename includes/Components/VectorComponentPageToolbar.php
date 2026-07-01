@@ -66,7 +66,7 @@ class VectorComponentPageToolbar implements VectorComponent {
 	 * @param array &$sidebar
 	 * @param array &$pageToolsMenu
 	 */
-	private static function extractPageToolsFromSidebar( array &$sidebar, array &$pageToolsMenu ) {
+	private static function extractToolboxFromSidebar( array &$sidebar, array &$pageToolsMenu ) {
 		$restPortlets = $sidebar[ 'array-portlets-rest' ] ?? [];
 		$toolboxMenuIndex = array_search(
 			VectorComponentPageTools::TOOLBOX_ID,
@@ -146,7 +146,7 @@ class VectorComponentPageToolbar implements VectorComponent {
 		$viewsData = $this->portletData['data-views'] ?? [];
 		$actionsData = $this->portletData['data-actions'] ?? [];
 		$toolbarData = [];
-		self::extractPageToolsFromSidebar( $this->sidebar, $toolbarData );
+		self::extractToolboxFromSidebar( $this->sidebar, $toolbarData );
 		self::moveWatchLinkToViews( $viewsData, $actionsData );
 
 		$toolsDropdown = new VectorComponentDropdown(

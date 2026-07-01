@@ -158,7 +158,7 @@ class VectorComponentPageToolbarTest extends VectorComponentSnapshotTestCase {
 		$this->assertEquals( $expectedActionsData, $actionsData );
 	}
 
-	public static function provideExtractPageToolsFromSidebar() {
+	public static function provideExtractToolboxFromSidebar() {
 		return [
 			[
 				[],
@@ -216,23 +216,21 @@ class VectorComponentPageToolbarTest extends VectorComponentSnapshotTestCase {
 	}
 
 	/**
-	 * @covers ::extractPageToolsFromSidebar
-	 * @dataProvider provideExtractPageToolsFromSidebar
+	 * @covers ::extractToolboxFromSidebar
+	 * @dataProvider provideExtractToolboxFromSidebar
 	 */
-	public function testExtractPageToolsFromSidebar( $sidebar, $expectedSidebar, $expectedPageTools, $msg ) {
+	public function testExtractToolboxFromSidebar( $sidebar, $expectedSidebar, $expectedPageTools, $msg ) {
 		$pageTools = [];
-		$extractPageToolsFromSidebar = new ReflectionMethod(
+		$extractToolboxFromSidebar = new ReflectionMethod(
 			VectorComponentPageToolbar::class,
-			'extractPageToolsFromSidebar'
+			'extractToolboxFromSidebar'
 		);
-		$extractPageToolsFromSidebar->invokeArgs( null, [ &$sidebar, &$pageTools ] );
+		$extractToolboxFromSidebar->invokeArgs( null, [ &$sidebar, &$pageTools ] );
 		$this->assertEquals( $expectedSidebar, $sidebar );
 		$this->assertEquals( $expectedPageTools, $pageTools, $msg );
 	}
 
 	public static function provideGetTemplateData() {
-		$iconOnlyClass = ' cdx-button cdx-button--fake-button cdx-button--fake-button--enabled '
-			. 'cdx-button--weight-quiet cdx-button--icon-only';
 		return [
 			[
 				[],
