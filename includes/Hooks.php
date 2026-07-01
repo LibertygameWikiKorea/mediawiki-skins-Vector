@@ -97,6 +97,29 @@ class Hooks implements
 	}
 
 	/**
+	 * Moves watch item from actions to views menu.
+	 *
+	 * @internal used inside Hooks::onSkinTemplateNavigation
+	 * @param array &$content_navigation
+	 */
+	private static function updateActionsMenu( &$content_navigation ) {
+		$key = null;
+		if ( isset( $content_navigation['actions']['watch'] ) ) {
+			$key = 'watch';
+		}
+		if ( isset( $content_navigation['actions']['unwatch'] ) ) {
+			$key = 'unwatch';
+		}
+
+		// Promote watch link from actions to views and add an icon
+		// The second check to isset is pointless but shuts up phan.
+		if ( $key !== null && isset( $content_navigation['actions'][ $key ] ) ) {
+			$content_navigation['views'][$key] = $content_navigation['actions'][$key];
+			unset( $content_navigation['actions'][$key] );
+		}
+	}
+
+	/**
 	 * Adds icons to items in the "views" menu in Legacy Vector.
 	 *
 	 * @internal used inside Hooks::onSkinTemplateNavigation
@@ -113,6 +136,21 @@ class Hooks implements
 				);
 			}
 			$item['class'] = $itemClass;
+		}
+	}
+
+	/**
+	 * All associated pages menu items do not have icons so are given the vector-tab-noicon class.
+	 *
+	 * @internal used inside Hooks::onSkinTemplateNavigation
+	 * @param array &$content_navigation
+	 */
+	private static function updateAssociatedPagesMenuIcons( &$content_navigation ) {
+		foreach ( $content_navigation['associated-pages'] as &$item ) {
+			self::appendClassToItem(
+				$item['class'],
+				[ 'vector-tab-noicon' ]
+			);
 		}
 	}
 
@@ -182,6 +220,15 @@ class Hooks implements
 		// These changes should only happen in Vector.
 		if ( !$skinName || !self::isVectorSkin( $skinName ) ) {
 			return;
+		}
+
+		$title = $sk->getRelevantTitle();
+		if (
+			self::isSkinVersionLegacy( $skinName ) &&
+			$sk->getConfig()->get( 'VectorUseIconWatch' ) &&
+			$title && $title->canExist()
+		) {
+			self::updateActionsMenu( $content_navigation );
 		}
 
 		if ( $skinName === Constants::SKIN_NAME_MODERN ) {
