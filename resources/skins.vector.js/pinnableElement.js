@@ -245,21 +245,6 @@ function bindBreakpoint( headers ) {
 	}
 }
 
-// T349924: Remove hasPinnedElements after one cycle of analyticsPinnedState() merge.
-/**
- * Checks if at least one of the elements in the HTML document is pinned based on CSS class names.
- *
- * @method
- * @return {boolean} True if at least one pinned element is found, otherwise false.
- */
-function hasPinnedElements() {
-	const suffixesToCheck = [ 'pinned-clientpref-1', 'pinned-enabled' ];
-	const htmlElement = document.documentElement;
-	return Array.from( htmlElement.classList ).some(
-		( className ) => suffixesToCheck.some( ( suffix ) => className.endsWith( suffix ) )
-	);
-}
-
 /**
  * @stable for use in WikimediaEvents only.
  * Checks if at least one of the elements in the HTML document is pinned based on CSS class names.
@@ -334,8 +319,6 @@ module.exports = {
 	init,
 	hideVectorColumnsHandler,
 	restoreVectorColumnsHandler,
-	// T349924: Remove hasPinnedElements.
-	hasPinnedElements,
 	analyticsPinnedState,
 	updatePinnableState,
 	isPinned,
