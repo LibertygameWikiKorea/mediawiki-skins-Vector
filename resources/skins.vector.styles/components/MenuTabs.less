@@ -25,11 +25,6 @@
 		.cdx-button:not( .cdx-button--icon-only ) {
 			gap: 3px;
 			padding: 0 @padding-horizontal-tabs;
-			margin-top: 1px;
-
-			@supports ( -moz-appearance: none ) {
-				margin-top: 0;
-			}
 
 			// Reduce icon size for icon in the page toolbar (i.e. watchstar, wikilove)
 			.vector-icon {
@@ -50,21 +45,34 @@
 
 		a {
 			display: inline-flex;
+			// In lieu of padding, vertically center tab text.
+			align-items: center;
 			position: relative;
 			cursor: pointer;
-			// Top & bottom padding to increase clickable area.
-			padding: @padding-vertical-tabs;
-			// bottom margin to overlap border with toolbar border.
-			margin-bottom: -1px;
-			/* T361841 add invisible bottom border by default */
-			border-bottom: 2px @border-style-base @border-color-transparent;
+			// Ensure tabs are the same height as buttons.
+			min-height: @min-size-interactive-pointer;
+
+			// T361841 add invisible bottom border by default.
+			// T430657 use pseudo-element to simplify vertical alignment.
+			&::after {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				height: @height-tab-underline;
+				background-color: @background-color-transparent;
+				content: '';
+			}
 		}
 
 		/* focus and hover have outlines. Text underline interferes with bottom border */
 		a:focus,
 		a:hover {
 			text-decoration: none;
-			border-bottom: 2px @border-style-base;
+
+			&::after {
+				background-color: @color-progressive--hover;
+			}
 		}
 	}
 
@@ -80,6 +88,9 @@
 
 	.mw-list-item.selected a {
 		.mixin-vector-selected-link();
-		border-bottom: 2px @border-style-base;
+
+		&::after {
+			background-color: @color-base;
+		}
 	}
 }
