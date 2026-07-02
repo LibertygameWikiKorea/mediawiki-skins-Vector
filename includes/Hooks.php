@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Skins\Vector;
 
-use MediaWiki\Auth\Hook\LocalUserCreatedHook;
 use MediaWiki\Config\Config;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
@@ -23,7 +22,6 @@ use MediaWiki\User\User;
  */
 class Hooks implements
 	GetPreferencesHook,
-	LocalUserCreatedHook,
 	SkinPageReadyConfigHook
 {
 	public function __construct(
@@ -116,13 +114,7 @@ class Hooks implements
 		// Promote watch link from actions to views and add an icon
 		// The second check to isset is pointless but shuts up phan.
 		if ( $key !== null && isset( $content_navigation['actions'][ $key ] ) ) {
-			$bookmarkItem = $content_navigation['views']['bookmark'] ?? null;
-			unset( $content_navigation['views']['bookmark'] );
-			// If bookmark item exists we reposition it at end.
 			$content_navigation['views'][$key] = $content_navigation['actions'][$key];
-			if ( $bookmarkItem ) {
-				$content_navigation['views']['bookmark'] = $bookmarkItem;
-			}
 			unset( $content_navigation['actions'][$key] );
 		}
 	}
@@ -232,6 +224,7 @@ class Hooks implements
 
 		$title = $sk->getRelevantTitle();
 		if (
+			self::isSkinVersionLegacy( $skinName ) &&
 			$sk->getConfig()->get( 'VectorUseIconWatch' ) &&
 			$title && $title->canExist()
 		) {
@@ -247,7 +240,6 @@ class Hooks implements
 		if ( self::isSkinVersionLegacy( $skinName ) ) {
 			self::updateViewsMenuIconsLegacyVector( $content_navigation );
 		}
-		self::updateAssociatedPagesMenuIcons( $content_navigation );
 	}
 
 	/**
@@ -302,24 +294,6 @@ class Hooks implements
 			],
 		];
 		$prefs += $vectorPrefs;
-	}
-
-	/**
-	 * Called one time when initializing a users preferences for a newly created account.
-	 *
-	 * @param User $user Newly created user object.
-	 * @param bool $isAutoCreated
-	 */
-	public function onLocalUserCreated( $user, $isAutoCreated ) {
-		$default = $this->config->get( Constants::CONFIG_KEY_DEFAULT_SKIN_VERSION_FOR_NEW_ACCOUNTS );
-		if ( $default ) {
-			$this->userOptionsManager->setOption(
-				$user,
-				Constants::PREF_KEY_SKIN,
-				$default === Constants::SKIN_VERSION_LEGACY ?
-					Constants::SKIN_NAME_LEGACY : Constants::SKIN_NAME_MODERN
-			);
-		}
 	}
 
 	/**

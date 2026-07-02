@@ -46,6 +46,118 @@ class VectorComponentPageToolbarTest extends VectorComponentSnapshotTestCase {
 		'id' => 'p-wikibase-otherprojects',
 	];
 
+	public static function provideMoveWatchLinkToViews() {
+		return [
+			[
+				// Test case: No actions data
+				[
+					'array-items' => [
+						[ 'name' => 'edit' ],
+						[ 'name' => 'history' ],
+					]
+				],
+				[
+					'array-items' => []
+				],
+				[
+					'array-items' => [
+						[ 'name' => 'edit' ],
+						[ 'name' => 'history' ],
+					]
+				],
+				[
+					'array-items' => []
+				],
+			],
+			[
+				// Test case: Watch link exists in actions data
+				[
+					'array-items' => [
+						[ 'name' => 'edit' ],
+						[ 'name' => 'history' ],
+					]
+				],
+				[
+					'array-items' => [
+						[ 'name' => 'watch' ]
+					]
+				],
+				[
+					'array-items' => [
+						[ 'name' => 'edit' ],
+						[ 'name' => 'history' ],
+						[ 'name' => 'watch' ]
+					]
+				],
+				[
+					'array-items' => []
+				],
+			], [
+				// Test case: Unwatch link exists in actions data
+				[
+					'array-items' => [
+						[ 'name' => 'edit' ],
+						[ 'name' => 'history' ],
+					]
+				],
+				[
+					'array-items' => [
+						[ 'name' => 'unwatch' ]
+					]
+				],
+				[
+					'array-items' => [
+						[ 'name' => 'edit' ],
+						[ 'name' => 'history' ],
+						[ 'name' => 'unwatch' ]
+					]
+				],
+				[
+					'array-items' => []
+				],
+			],
+			[
+				// Test case: No watch/unwatch links in actions data
+				[
+					'array-items' => [
+						[ 'name' => 'edit' ],
+						[ 'name' => 'history' ],
+					]
+				],
+				[
+					'array-items' => [
+						[ 'name' => 'delete' ],
+					]
+				],
+				[
+					'array-items' => [
+						[ 'name' => 'edit' ],
+						[ 'name' => 'history' ],
+					]
+				],
+				[
+					'array-items' => [
+						[ 'name' => 'delete' ],
+					]
+				],
+			]
+		];
+	}
+
+	/**
+	 * @covers ::moveWatchLinkToViews
+	 * @dataProvider provideMoveWatchLinkToViews
+	 */
+	public function testMoveWatchLinkToViews( $viewsData, $actionsData, $expectedViewsData, $expectedActionsData ) {
+		$moveWatchLinkToViews = new ReflectionMethod(
+			VectorComponentPageToolbar::class,
+			'moveWatchLinkToViews'
+		);
+		$moveWatchLinkToViews->invokeArgs( null, [ &$viewsData, &$actionsData ] );
+		$this->assertEquals( $expectedViewsData, $viewsData );
+		$this->assertEquals( $expectedActionsData, $actionsData );
+	}
+
 	public static function provideExtractPageToolsFromSidebar() {
 		return [
 			[
