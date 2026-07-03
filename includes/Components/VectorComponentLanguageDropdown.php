@@ -70,7 +70,7 @@ class VectorComponentLanguageDropdown implements VectorComponent {
 		// ext.uls.interface attaches click handler to this selector.
 		$dropdownData['checkbox-class'] = $checkboxClass;
 		$dropdownData['icon'] = $icon;
-		$dropdownData['aria-label'] = $this->ariaLabel;
+		$dropdownData['aria-description'] = $this->ariaLabel;
 		$dropdownData['is-language-selector-empty'] = !$isSubjectPage;
 
 		return $dropdownData + $this->menuContentsData;

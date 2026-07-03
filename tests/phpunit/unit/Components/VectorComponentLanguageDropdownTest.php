@@ -102,7 +102,7 @@ class VectorComponentLanguageDropdownTest extends MediaWikiUnitTestCase {
 
 		// Verifying that the template data is constructed as expected
 		$this->assertEquals( $label, $templateData['label'] );
-		$this->assertEquals( $ariaLabel, $templateData['aria-label'] );
+		$this->assertEquals( $ariaLabel, $templateData['aria-description'] );
 		$this->assertEquals( $expectedIcon, $templateData['icon'] );
 		$this->assertStringContainsString( 'cdx-button--fake-button', $templateData['label-class'] );
 		$this->assertEquals( $itemHTML, $templateData['html-items'] );
