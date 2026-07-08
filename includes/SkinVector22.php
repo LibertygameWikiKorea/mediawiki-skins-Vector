@@ -64,7 +64,6 @@ class SkinVector22 extends SkinMustache {
 				'user-page' => $userPage,
 			] + $content_navigation['user-menu'];
 		}
-		Hooks::onSkinTemplateNavigation( $skin, $content_navigation );
 	}
 
 	/**
@@ -224,31 +223,6 @@ class SkinVector22 extends SkinMustache {
 	}
 
 	/**
-	 * Merges the `view-overflow` menu into the `action` menu.
-	 * This ensures that the previous state of the menu e.g. emptyPortlet class
-	 * is preserved.
-	 *
-	 * @param array $data
-	 * @return array
-	 */
-	private function mergeViewOverflowIntoActions( array $data ): array {
-		$portlets = $data['data-portlets'];
-		$actions = $portlets['data-actions'];
-		$overflow = $portlets['data-views-overflow'];
-		// if the views overflow menu is not empty, then signal that the more menu despite
-		// being initially empty now has collapsible items.
-		if ( !$overflow['is-empty'] ) {
-			$data['data-portlets']['data-actions']['class'] .= ' vector-has-collapsible-items';
-		}
-		$data['data-portlets']['data-actions']['html-items'] = $overflow['html-items'] . $actions['html-items'];
-		$data['data-portlets']['data-actions']['array-items'] = array_merge(
-			$overflow['array-items'] ?? [],
-			$actions['array-items'] ?? []
-		);
-		return $data;
-	}
-
-	/**
 	 * @inheritDoc
 	 */
 	public function getHtmlElementAttributes() {
@@ -296,7 +270,6 @@ class SkinVector22 extends SkinMustache {
 
 	public function getTemplateData(): array {
 		$parentData = parent::getTemplateData();
-		$parentData = $this->mergeViewOverflowIntoActions( $parentData );
 		$portlets = $parentData['data-portlets'];
 
 		$langData = $portlets['data-languages'] ?? null;

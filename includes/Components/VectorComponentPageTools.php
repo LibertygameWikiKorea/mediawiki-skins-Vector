@@ -22,6 +22,9 @@ class VectorComponentPageTools implements VectorComponent {
 	/** @var string */
 	private const ACTIONS_ID = 'p-cactions';
 
+	/** @var string */
+	private const VIEWS_ID = 'p-views';
+
 	public function __construct(
 		private readonly array $menus,
 		private readonly MessageLocalizer $localizer,
@@ -39,17 +42,19 @@ class VectorComponentPageTools implements VectorComponent {
 	}
 
 	/**
-	 * Revise the p-tb and p-cactions menus.
+	 * Revise the p-tb, p-cactions, and p-views menus.
 	 */
 	private function getMenus(): array {
-		return array_map( function ( $menu ) {
+		$pageToolsMenus = [];
+		$viewsMenuData = [];
+		foreach ( $this->menus as $menu ) {
 			switch ( $menu['id'] ?? '' ) {
 				case self::TOOLBOX_ID:
 					// Update the label.
 					$menu['label'] = $this->localizer->msg( 'vector-page-tools-general-label' )->text();
+					$pageToolsMenus[] = $menu;
 					break;
 				case self::ACTIONS_ID:
-					// Convert to VectorComponentMenu to enable use of icons.
 					$menuComponent = new VectorComponentMenu( [
 						'id' => $menu['id'],
 						'class' => $menu['class'] ?? '',
@@ -57,11 +62,26 @@ class VectorComponentPageTools implements VectorComponent {
 						'array-list-items' => $menu['array-items'],
 						'html-after-portal' => $menu['html-after-portal'] ?? '',
 					] );
-					return $menuComponent->getTemplateData();
+					$pageToolsMenus[] = $menuComponent->getTemplateData();
+					break;
+				case self::VIEWS_ID:
+					$menuComponent = new VectorComponentMenu( [
+						'id' => $menu['id'],
+						'class' => $menu['class'] ?? '',
+						'array-list-items' => $menu['array-items'],
+					], [
+						'collapsible' => true
+					] );
+					$viewsMenuData = $menuComponent->getTemplateData();
+					break;
 			}
-
-			return $menu;
-		}, $this->menus );
+		}
+		// Combine views and actions menus
+		$pageToolsMenus[0]['array-list-items'] = array_merge(
+			$viewsMenuData['array-list-items'] ?? [],
+			$pageToolsMenus[0]['array-list-items'] ?? []
+		);
+		return $pageToolsMenus;
 	}
 
 	/**

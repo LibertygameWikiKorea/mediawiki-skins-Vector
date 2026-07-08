@@ -13,13 +13,15 @@ class VectorComponentPageToolbar implements VectorComponent {
 		'class' => '',
 		'button' => [
 			'action' => 'progressive'
-		]
+		],
+		'collapsible' => true,
 	];
 	private const ICON_ONLY_BUTTON = [
 		'class' => '',
 		'button' => [
 			'iconOnly' => true,
 		],
+		'collapsible' => true,
 	];
 
 	public function __construct(
@@ -37,6 +39,22 @@ class VectorComponentPageToolbar implements VectorComponent {
 	 */
 	private function msg( $key ): Message {
 		return $this->localizer->msg( $key );
+	}
+
+	/**
+	 * Creates a duplicate of the views menu that will be injected page tools dropdown
+	 * This menu will only be shown at low resolutions (when the `views` menu is hidden).
+	 *
+	 * @param array $viewsData
+	 * @return array
+	 */
+	private function createViewsMoreMenu( array $viewsData ): array {
+		$viewsMoreMenu = $viewsData;
+		foreach ( $viewsMoreMenu[ 'array-items' ] ?? [] as $key => $item ) {
+			$item[ 'id' ] .= '-more';
+			$viewsMoreMenu[ 'array-items' ][ $key ] = $item;
+		}
+		return $viewsMoreMenu;
 	}
 
 	/**
@@ -148,6 +166,7 @@ class VectorComponentPageToolbar implements VectorComponent {
 		$toolbarData = [];
 		self::extractToolboxFromSidebar( $this->sidebar, $toolbarData );
 		self::moveWatchLinkToViews( $viewsData, $actionsData );
+		$viewsMoreData = self::createViewsMoreMenu( $viewsData );
 
 		$toolsDropdown = new VectorComponentDropdown(
 			VectorComponentPageTools::ID . '-dropdown',
@@ -156,7 +175,7 @@ class VectorComponentPageToolbar implements VectorComponent {
 			'verticalEllipsis'
 		);
 		$pageToolsMenu = new VectorComponentPageTools(
-			array_merge( [ $actionsData ], $toolbarData ),
+			array_merge( [ $viewsMoreData ], [ $actionsData ], $toolbarData ),
 			$this->localizer,
 			$this->featureManager
 		);

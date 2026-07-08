@@ -182,30 +182,6 @@ class Hooks implements
 	}
 
 	/**
-	 * Vector 2022 only:
-	 * Creates an additional menu that will be injected inside the more (cactions)
-	 * dropdown menu. This menu is a clone of `views` and this menu will only be
-	 * shown at low resolutions (when the `views` menu is hidden).
-	 *
-	 * An additional menu is used instead of adding to the existing cactions menu
-	 * so that the emptyPortlet logic for that menu is preserved and the cactions menu
-	 * is not shown at large resolutions when empty (e.g. all items including collapsed
-	 * items are hidden).
-	 *
-	 * @param array &$content_navigation
-	 */
-	private static function createMoreOverflowMenu( &$content_navigation ) {
-		$clonedViews = [];
-		foreach ( $content_navigation['views'] ?? [] as $key => $item ) {
-			$newItem = $item;
-			self::appendClassToItem( $newItem[ 'class' ], 'vector-more-collapsible-item' );
-			$clonedViews['more-' . $key] = $newItem;
-		}
-		// Inject collapsible menu items ahead of existing actions.
-		$content_navigation['views-overflow'] = $clonedViews;
-	}
-
-	/**
 	 * Upgrades Vector's watch action to a watchstar.
 	 * This is invoked inside SkinVector, not via skin registration, as skin hooks
 	 * are not guaranteed to run last.
@@ -216,30 +192,16 @@ class Hooks implements
 	 * @param array &$content_navigation
 	 */
 	public static function onSkinTemplateNavigation( $sk, &$content_navigation ) {
-		$skinName = $sk->getSkinName();
-		// These changes should only happen in Vector.
-		if ( !$skinName || !self::isVectorSkin( $skinName ) ) {
-			return;
-		}
-
 		$title = $sk->getRelevantTitle();
 		if (
-			self::isSkinVersionLegacy( $skinName ) &&
 			$sk->getConfig()->get( 'VectorUseIconWatch' ) &&
 			$title && $title->canExist()
 		) {
 			self::updateActionsMenu( $content_navigation );
 		}
-
-		if ( $skinName === Constants::SKIN_NAME_MODERN ) {
-			self::createMoreOverflowMenu( $content_navigation );
-		}
-
 		// The updating of the views menu happens /after/ the overflow menu has been created
 		// this avoids icons showing in the more overflow menu.
-		if ( self::isSkinVersionLegacy( $skinName ) ) {
-			self::updateViewsMenuIconsLegacyVector( $content_navigation );
-		}
+		self::updateViewsMenuIconsLegacyVector( $content_navigation );
 	}
 
 	/**

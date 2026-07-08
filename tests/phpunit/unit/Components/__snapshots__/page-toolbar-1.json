@@ -26,7 +26,9 @@
             "data-pinned-container-id": "vector-page-tools-pinned-container"
         },
         "data-menus": [
-            []
+            {
+                "array-list-items": []
+            }
         ]
     },
     "data-page-tools-dropdown": {

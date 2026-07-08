@@ -29,7 +29,7 @@
             },
             {
                 "id": "ca-unwatch",
-                "class": "",
+                "class": " vector-menu-item--collapsible",
                 "array-links": [
                     {
                         "data-button": {
@@ -45,7 +45,7 @@
             },
             {
                 "id": "ca-bookmark",
-                "class": "",
+                "class": " vector-menu-item--collapsible",
                 "array-links": [
                     {
                         "data-button": {
@@ -80,7 +80,48 @@
             "data-pinned-container-id": "vector-page-tools-pinned-container"
         },
         "data-menus": [
-            []
+            {
+                "array-list-items": [
+                    {
+                        "id": "ca-edit-more",
+                        "class": " vector-menu-item--collapsible",
+                        "array-links": [
+                            {
+                                "array-attributes": [],
+                                "text": "edit",
+                                "icon": null
+                            }
+                        ]
+                    },
+                    {
+                        "id": "ca-unwatch-more",
+                        "class": " vector-menu-item--collapsible",
+                        "array-links": [
+                            {
+                                "icon": "unStar",
+                                "array-attributes": [],
+                                "text": "watch"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "ca-bookmark-more",
+                        "class": " vector-menu-item--collapsible",
+                        "array-links": [
+                            {
+                                "array-attributes": [
+                                    {
+                                        "key": "class",
+                                        "value": ""
+                                    }
+                                ],
+                                "icon": "bookmark",
+                                "text": "bookmark"
+                            }
+                        ]
+                    }
+                ]
+            }
         ]
     },
     "data-page-tools-dropdown": {
