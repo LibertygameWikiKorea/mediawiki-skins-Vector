@@ -4,7 +4,15 @@
 
 /* Tab list items */
 .vector-menu-tabs {
-	float: left;
+	.vector-menu-content {
+		width: 100%;
+	}
+
+	.vector-menu-content-list {
+		display: flex;
+		align-items: center;
+		justify-content: end;
+	}
 
 	// Expand watchstar and wikilove links it to cover full touch area
 	.mw-list-item {
@@ -74,11 +82,4 @@
 		.mixin-vector-selected-link();
 		border-bottom: 2px @border-style-base;
 	}
-}
-
-// Flexbox styles
-.vector-menu-tabs .vector-menu-content-list,
-#left-navigation nav {
-	display: flex;
-	flex-direction: row;
 }

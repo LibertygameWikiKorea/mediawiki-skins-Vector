@@ -1,10 +1,41 @@
+.toolbars-expand-to-two-lines() {
+	flex-flow: column;
+
+	/* Push the bookmark and watchlist to the right. */
+	#ca-history,
+	/* has query caters for non existent pages which do not have history link.
+	This is equivalent to LAST vector-tab-noicon element.
+	Since this is not a common case, has browser support is acceptable. */
+	.vector-tab-noicon:not( :has( ~ .vector-tab-noicon ) ) {
+		flex: 1;
+	}
+
+	#ca-view {
+		display: none;
+
+		.ve-activated &,
+		.action-edit & {
+			display: block;
+		}
+	}
+}
+
 .vector-page-toolbar-container {
 	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
 	font-size: @font-size-small;
 	// Use box-shadow instead of border to allow border collapsing between titlebar and toolbar
 	box-shadow: 0 1px @border-color-subtle;
 	// Add bottom margin to account for box-shadow
 	margin-bottom: 1px;
+
+	html.vector-feature-toc-pinned-clientpref-1.vector-feature-page-tools-pinned-enabled &,
+	html.vector-feature-main-menu-pinned-enabled.vector-feature-page-tools-pinned-enabled & {
+		@media ( max-width: @max-width-breakpoint-desktop ) {
+			.toolbars-expand-to-two-lines();
+		}
+	}
 
 	.cdx-button {
 		// Override default button styles to match the styles of the tabs in the titlebar
@@ -16,25 +47,42 @@
 
 		@media ( min-width: @min-width-breakpoint-page-tools-dropdown ) {
 			&:not( .emptyPortlet ) {
-				display: block;
+				display: flex;
 			}
 		}
 	}
 }
 
+@media ( min-width: @max-width-breakpoint-mobile ) {
+	@media ( max-width: @max-width-breakpoint-tablet ) {
+		.vector-page-toolbar-container {
+			.toolbars-expand-to-two-lines();
+		}
+	}
+}
+
 // ID Selectors outside of .vector-page-toolbar-container to avoid over-specificity.
+#right-navigation,
 #left-navigation {
 	// flex ensures all child elements align on one line.
 	display: flex;
-	margin-left: -@padding-horizontal-tabs;
-	// pushes #right-navigation to the end of the line.
-	flex-grow: 1;
+	align-items: center;
+	margin: 0 -@padding-horizontal-tabs;
+}
+
+// For language variants
+#left-navigation > nav {
+	display: flex;
 }
 
 #right-navigation {
-	// flex ensures all child elements align on one line.
-	display: flex;
-	margin-right: -@padding-horizontal-tabs;
+	justify-content: flex-end;
+
+	// Needed to ensure views push bookmark to right
+	// between tablet and desktop breakpoint
+	> nav:first-child {
+		width: 100%;
+	}
 
 	// Any dropdowns inside the right navigation in modern Vector (e.g. "more" menu).
 	// should be right-aligned to prevent horizontal scrolling.
