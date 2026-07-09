@@ -6,27 +6,11 @@
 	}
 }
 
-// Ensure collapsible items are visible on lower resolutions
-.vector-page-tools .vector-more-collapsible-item {
-	display: block;
-
-	@media ( min-width: @min-width-breakpoint-page-tools-dropdown ) {
-		display: none;
-	}
-}
-
-// Make sure pcactions is displayed on lower resolutions (even if .emptyPortlet present)
-.vector-page-tools .vector-has-collapsible-items {
-	@media ( max-width: @min-width-breakpoint-page-tools-dropdown ) {
-		display: block;
-	}
-}
-
-// Limit icons to mobile viewports.
 .vector-page-tools {
-	.vector-icon {
-		display: block;
-
+	// Limit icons to mobile viewports
+	// Limit collapsible menu items to mobile viewports
+	.vector-icon,
+	.vector-menu-item--collapsible {
 		@media ( min-width: @min-width-breakpoint-page-tools-dropdown ) {
 			display: none;
 		}

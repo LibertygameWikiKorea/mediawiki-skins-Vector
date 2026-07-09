@@ -48,7 +48,32 @@
             "data-pinned-container-id": "vector-page-tools-pinned-container"
         },
         "data-menus": [
-            []
+            {
+                "array-list-items": [
+                    {
+                        "id": "ca-edit-more",
+                        "class": " vector-menu-item--collapsible",
+                        "array-links": [
+                            {
+                                "array-attributes": [],
+                                "text": "edit",
+                                "icon": null
+                            }
+                        ]
+                    },
+                    {
+                        "id": "ca-addsection-more",
+                        "class": " vector-menu-item--collapsible",
+                        "array-links": [
+                            {
+                                "array-attributes": [],
+                                "text": "edit",
+                                "icon": null
+                            }
+                        ]
+                    }
+                ]
+            }
         ]
     },
     "data-page-tools-dropdown": {
