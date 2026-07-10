@@ -46,6 +46,14 @@ Certain configuration is used by us during rollout of new features with the expe
 
 Do not rely on any of the feature flags documented here. They should not be considered stable.
 
+- wgVectorNavigationUpdateTemporary
+
+  - Improvements to toolbar.
+
+  - Default: `false`
+
+  - Removal ticket: [T428520](https://phabricator.wikimedia.org/T428520)
+
 - wgVectorPromoteAddTopic
 
   - Determines whether the Add topic feature is promoted in discussions.

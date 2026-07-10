@@ -30,10 +30,10 @@
 	// Add bottom margin to account for box-shadow
 	margin-bottom: 1px;
 
-	html.vector-feature-main-menu-pinned-enabled.vector-feature-appearance-pinned-clientpref-1 &,
-	html.vector-feature-toc-pinned-clientpref-1.vector-feature-appearance-pinned-clientpref-1 &,
-	html.vector-feature-toc-pinned-clientpref-1.vector-feature-page-tools-pinned-enabled &,
-	html.vector-feature-main-menu-pinned-enabled.vector-feature-page-tools-pinned-enabled & {
+	html.vector-feature-navigation-update-enabled.vector-feature-main-menu-pinned-enabled.vector-feature-appearance-pinned-clientpref-1 &,
+	html.vector-feature-navigation-update-enabled.vector-feature-toc-pinned-clientpref-1.vector-feature-appearance-pinned-clientpref-1 &,
+	html.vector-feature-navigation-update-enabled.vector-feature-toc-pinned-clientpref-1.vector-feature-page-tools-pinned-enabled &,
+	html.vector-feature-navigation-update-enabled.vector-feature-main-menu-pinned-enabled.vector-feature-page-tools-pinned-enabled & {
 		@media ( max-width: @max-width-breakpoint-desktop ) {
 			.toolbars-expand-to-two-lines();
 		}
@@ -62,7 +62,7 @@
 
 @media ( min-width: @max-width-breakpoint-mobile ) {
 	@media ( max-width: @max-width-breakpoint-tablet ) {
-		.vector-page-toolbar-container {
+		html.vector-feature-navigation-update-enabled .vector-page-toolbar-container {
 			.toolbars-expand-to-two-lines();
 		}
 	}

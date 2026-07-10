@@ -7,7 +7,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\Skin\Hook\SkinPageReadyConfigHook;
-use MediaWiki\Skin\SkinTemplate;
 use MediaWiki\Skins\Vector\Hooks\HookRunner;
 use MediaWiki\User\Options\UserOptionsManager;
 use MediaWiki\User\User;
@@ -97,114 +96,6 @@ class Hooks implements
 	}
 
 	/**
-	 * Moves watch item from actions to views menu.
-	 *
-	 * @internal used inside Hooks::onSkinTemplateNavigation
-	 * @param array &$content_navigation
-	 */
-	private static function updateActionsMenu( &$content_navigation ) {
-		$key = null;
-		if ( isset( $content_navigation['actions']['watch'] ) ) {
-			$key = 'watch';
-		}
-		if ( isset( $content_navigation['actions']['unwatch'] ) ) {
-			$key = 'unwatch';
-		}
-
-		// Promote watch link from actions to views and add an icon
-		// The second check to isset is pointless but shuts up phan.
-		if ( $key !== null && isset( $content_navigation['actions'][ $key ] ) ) {
-			$content_navigation['views'][$key] = $content_navigation['actions'][$key];
-			unset( $content_navigation['actions'][$key] );
-		}
-	}
-
-	/**
-	 * Adds icons to items in the "views" menu in Legacy Vector.
-	 *
-	 * @internal used inside Hooks::onSkinTemplateNavigation
-	 * @param array &$content_navigation
-	 */
-	private static function updateViewsMenuIconsLegacyVector( &$content_navigation ) {
-		foreach ( $content_navigation['views'] as $key => &$item ) {
-			$icon = $item['icon'] ?? null;
-			$itemClass = $item['class'] ?? '';
-			if ( $icon ) {
-				self::appendClassToItem(
-					$itemClass,
-					[ 'icon' ]
-				);
-			}
-			$item['class'] = $itemClass;
-		}
-	}
-
-	/**
-	 * All associated pages menu items do not have icons so are given the vector-tab-noicon class.
-	 *
-	 * @internal used inside Hooks::onSkinTemplateNavigation
-	 * @param array &$content_navigation
-	 */
-	private static function updateAssociatedPagesMenuIcons( &$content_navigation ) {
-		foreach ( $content_navigation['associated-pages'] as &$item ) {
-			self::appendClassToItem(
-				$item['class'],
-				[ 'vector-tab-noicon' ]
-			);
-		}
-	}
-
-	/**
-	 * Adds class to a property
-	 *
-	 * @param array|string|bool &$item to update
-	 * @param array|string $classes to add to the item
-	 */
-	private static function appendClassToItem( &$item, $classes ) {
-		$existingClasses = $item;
-
-		if ( is_array( $existingClasses ) ) {
-			// Treat as array
-			$newArrayClasses = is_array( $classes ) ? $classes : [ trim( $classes ) ];
-			$item = array_merge( $existingClasses, $newArrayClasses );
-		} elseif ( is_string( $existingClasses ) ) {
-			// Treat as string
-			$newStrClasses = is_string( $classes ) ? trim( $classes ) : implode( ' ', $classes );
-			$item .= ' ' . $newStrClasses;
-		} else {
-			// Treat as whatever $classes is
-			$item = $classes;
-		}
-
-		if ( is_string( $item ) ) {
-			$item = trim( $item );
-		}
-	}
-
-	/**
-	 * Upgrades Vector's watch action to a watchstar.
-	 * This is invoked inside SkinVector, not via skin registration, as skin hooks
-	 * are not guaranteed to run last.
-	 * This can possibly be revised based on the outcome of T287622.
-	 *
-	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/SkinTemplateNavigation
-	 * @param SkinTemplate $sk
-	 * @param array &$content_navigation
-	 */
-	public static function onSkinTemplateNavigation( $sk, &$content_navigation ) {
-		$title = $sk->getRelevantTitle();
-		if (
-			$sk->getConfig()->get( 'VectorUseIconWatch' ) &&
-			$title && $title->canExist()
-		) {
-			self::updateActionsMenu( $content_navigation );
-		}
-		// The updating of the views menu happens /after/ the overflow menu has been created
-		// this avoids icons showing in the more overflow menu.
-		self::updateViewsMenuIconsLegacyVector( $content_navigation );
-	}
-
-	/**
 	 * Adds Vector specific user preferences that can only be accessed via API.
 	 *
 	 * @param User $user User whose preferences are being modified.
@@ -256,15 +147,5 @@ class Hooks implements
 			],
 		];
 		$prefs += $vectorPrefs;
-	}
-
-	/**
-	 * Gets whether the current skin version is the legacy version.
-	 *
-	 * @param string $skinName hint that can be used to detect modern vector.
-	 * @return bool
-	 */
-	private static function isSkinVersionLegacy( $skinName ): bool {
-		return $skinName === Constants::SKIN_NAME_LEGACY;
 	}
 }

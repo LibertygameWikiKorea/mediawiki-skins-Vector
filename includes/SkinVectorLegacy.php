@@ -32,6 +32,80 @@ class SkinVectorLegacy extends SkinMustache {
 	}
 
 	/**
+	 * Adds class to a property
+	 *
+	 * @param array|string|bool &$item to update
+	 * @param array|string $classes to add to the item
+	 */
+	private static function appendClassToItem( &$item, $classes ) {
+		$existingClasses = $item;
+
+		if ( is_array( $existingClasses ) ) {
+			// Treat as array
+			$newArrayClasses = is_array( $classes ) ? $classes : [ trim( $classes ) ];
+			$item = array_merge( $existingClasses, $newArrayClasses );
+		} elseif ( is_string( $existingClasses ) ) {
+			// Treat as string
+			$newStrClasses = is_string( $classes ) ? trim( $classes ) : implode( ' ', $classes );
+			$item .= ' ' . $newStrClasses;
+		} else {
+			// Treat as whatever $classes is
+			$item = $classes;
+		}
+
+		if ( is_string( $item ) ) {
+			$item = trim( $item );
+		}
+	}
+
+	/**
+	 * Moves watch item from actions to views menu.
+	 *
+	 * @internal used inside Hooks::onSkinTemplateNavigation
+	 * @param array &$content_navigation
+	 */
+	private static function updateActionsMenu( &$content_navigation ) {
+		$key = null;
+		if ( isset( $content_navigation['actions']['watch'] ) ) {
+			$key = 'watch';
+		}
+		if ( isset( $content_navigation['actions']['unwatch'] ) ) {
+			$key = 'unwatch';
+		}
+
+		// Promote watch link from actions to views and add an icon
+		// The second check to isset is pointless but shuts up phan.
+		if ( $key !== null && isset( $content_navigation['actions'][ $key ] ) ) {
+			$content_navigation['views'][$key] = $content_navigation['actions'][$key];
+			unset( $content_navigation['actions'][$key] );
+		}
+	}
+
+	/**
+	 * Update "views" menu items to support items in Legacy Vector. Only used by watchstar
+	 *
+	 * @internal used inside Hooks::onSkinTemplateNavigation
+	 * @param array &$content_navigation
+	 */
+	private static function updateViewsMenuIconsLegacyVector( &$content_navigation ) {
+		foreach ( $content_navigation['views'] as $key => &$item ) {
+			$icon = $item['icon'] ?? null;
+			$itemClass = $item['class'] ?? '';
+			if ( $icon ) {
+				self::appendClassToItem(
+					$itemClass,
+					[ 'icon' ]
+				);
+			}
+			$item['class'] = $itemClass;
+		}
+	}
+
+	/**
+	 * Upgrades Vector's watch action to a watchstar.
+	 * This is invoked inside SkinVector, not via skin registration, as skin hooks
+	 * are not guaranteed to run last.
+	 *
 	 * @inheritDoc
 	 */
 	protected function runOnSkinTemplateNavigationHooks( SkinTemplate $skin, &$content_navigation ) {
@@ -77,7 +151,16 @@ class SkinVectorLegacy extends SkinMustache {
 				]
 			] + $associatedPages;
 		}
-		Hooks::onSkinTemplateNavigation( $skin, $content_navigation );
+		$relevantTitle = $skin->getRelevantTitle();
+		if (
+			$skin->getConfig()->get( 'VectorUseIconWatch' ) &&
+			$relevantTitle && $relevantTitle->canExist()
+		) {
+			self::updateActionsMenu( $content_navigation );
+		}
+		// The updating of the views menu happens /after/ the overflow menu has been created
+		// this avoids icons showing in the more overflow menu.
+		self::updateViewsMenuIconsLegacyVector( $content_navigation );
 	}
 
 	/**
