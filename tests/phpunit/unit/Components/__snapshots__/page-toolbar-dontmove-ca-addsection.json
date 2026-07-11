@@ -53,6 +53,8 @@
             "label-tag-name": "div",
             "pin-label": "vector-pin-element-label",
             "unpin-label": "vector-unpin-element-label",
+            "pin-aria-label": "vector-pin-element-aria-label",
+            "unpin-aria-label": "vector-unpin-element-aria-label",
             "data-pinnable-element-id": "vector-page-tools",
             "data-feature-name": "page-tools-pinned",
             "data-unpinned-container-id": "vector-page-tools-unpinned-container",

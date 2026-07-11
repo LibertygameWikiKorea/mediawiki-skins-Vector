@@ -45,6 +45,8 @@ const unpinnedData = {
 	'label-tag-name': 'div',
 	'pin-label': 'pin',
 	'unpin-label': 'unpin',
+	'pin-aria-label': 'Move simple pinnable element to sidebar',
+	'unpin-aria-label': 'Hide simple pinnable element',
 	'data-pinned-container-id': 'pinned-container',
 	'data-unpinned-container-id': 'unpinned-container'
 };
@@ -57,6 +59,8 @@ const pinnedData = {
 	'label-tag-name': 'div',
 	'pin-label': 'pin',
 	'unpin-label': 'unpin',
+	'pin-aria-label': 'Move appearance menu to sidebar',
+	'unpin-aria-label': 'Hide appearance menu',
 	'data-pinned-container-id': 'pinned-container',
 	'data-unpinned-container-id': 'unpinned-container'
 };

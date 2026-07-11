@@ -86,7 +86,9 @@ function render( templateProps = {} ) {
 			label: 'Contents',
 			'label-tag-name': 'h2',
 			'pin-label': 'move to sidebar',
-			'unpin-label': 'hide'
+			'unpin-label': 'hide',
+			'pin-aria-label': 'Move table of contents to sidebar',
+			'unpin-aria-label': 'Hide table of contents'
 		}
 	}, templateProps );
 

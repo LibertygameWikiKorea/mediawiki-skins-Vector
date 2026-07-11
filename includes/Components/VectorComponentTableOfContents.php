@@ -30,6 +30,8 @@ class VectorComponentTableOfContents implements VectorComponent {
 			$this->isPinned,
 			self::ID,
 			'toc-pinned',
+			'vector-unpin-element-aria-label',
+			'vector-pin-element-aria-label',
 			'h2'
 		);
 	}

@@ -47,6 +47,10 @@ class VectorComponentPinnableHeaderTest extends MediaWikiUnitTestCase {
 				'id' => 'vector-example',
 				// Feature name for persistent state tracking.
 				'featureName' => 'example-pinned',
+				// i18n message key for unpin aria-label.
+				'unpinAriaLabel' => 'vector-unpin-element-aria-label',
+				// i18n message key for pin aria-label.
+				'pinAriaLabel' => 'vector-pin-element-aria-label',
 				// The type of label tag to be used.
 				'labelTagName' => 'div'
 			],
@@ -58,6 +62,10 @@ class VectorComponentPinnableHeaderTest extends MediaWikiUnitTestCase {
 				'id' => 'vector-another-example',
 				// Feature name for tracking state.
 				'featureName' => 'another-example-pinned',
+				// i18n message key for unpin aria-label.
+				'unpinAriaLabel' => 'vector-unpin-element-aria-label',
+				// i18n message key for pin aria-label.
+				'pinAriaLabel' => 'vector-pin-element-aria-label',
 				// The type of label tag to be used, in this case, an h2.
 				'labelTagName' => 'h2'
 			],
@@ -70,7 +78,7 @@ class VectorComponentPinnableHeaderTest extends MediaWikiUnitTestCase {
 	 * @covers ::getTemplateData
 	 * @dataProvider provideTestCases
 	 */
-	public function testGetTemplateData( $pinned, $id, $featureName, $labelTagName ) {
+	public function testGetTemplateData( $pinned, $id, $featureName, $unpinAriaLabel, $pinAriaLabel, $labelTagName ) {
 		// Mocking the MessageLocalizer to provide predictable responses for given message keys.
 		$localizer = $this->createMock( MessageLocalizer::class );
 		$localizer->method( 'msg' )->willReturnCallback( function ( $key ) {
@@ -87,6 +95,8 @@ class VectorComponentPinnableHeaderTest extends MediaWikiUnitTestCase {
 			$pinned,
 			$id,
 			$featureName,
+			$unpinAriaLabel,
+			$pinAriaLabel,
 			$labelTagName
 		);
 
@@ -99,6 +109,8 @@ class VectorComponentPinnableHeaderTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( $labelTagName, $templateData['label-tag-name'] );
 		$this->assertStringEndsWith( '-mocked-label', $templateData['pin-label'] );
 		$this->assertStringEndsWith( '-mocked-label', $templateData['unpin-label'] );
+		$this->assertStringEndsWith( '-mocked-label', $templateData['pin-aria-label'] );
+		$this->assertStringEndsWith( '-mocked-label', $templateData['unpin-aria-label'] );
 		$this->assertEquals( $id, $templateData['data-pinnable-element-id'] );
 		$this->assertEquals( $featureName, $templateData['data-feature-name'] );
 		$this->assertEquals( $id . '-unpinned-container', $templateData['data-unpinned-container-id'] );

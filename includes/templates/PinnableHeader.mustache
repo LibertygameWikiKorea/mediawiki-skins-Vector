@@ -6,6 +6,6 @@
 	{{#data-unpinned-container-id}}data-unpinned-container-id="{{.}}"{{/data-unpinned-container-id}}
 >
 	<{{label-tag-name}} class="vector-pinnable-header-label">{{label}}</{{label-tag-name}}>
-	<button class="vector-pinnable-header-toggle-button vector-pinnable-header-pin-button" data-event-name="pinnable-header.{{data-pinnable-element-id}}.pin">{{pin-label}}</button>
-	<button class="vector-pinnable-header-toggle-button vector-pinnable-header-unpin-button" data-event-name="pinnable-header.{{data-pinnable-element-id}}.unpin">{{unpin-label}}</button>
+	<button class="vector-pinnable-header-toggle-button vector-pinnable-header-pin-button" data-event-name="pinnable-header.{{data-pinnable-element-id}}.pin" aria-label="{{pin-aria-label}}">{{pin-label}}</button>
+	<button class="vector-pinnable-header-toggle-button vector-pinnable-header-unpin-button" data-event-name="pinnable-header.{{data-pinnable-element-id}}.unpin" aria-label="{{unpin-aria-label}}">{{unpin-label}}</button>
 </div>
