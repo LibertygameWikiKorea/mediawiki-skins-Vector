@@ -77,5 +77,7 @@
 	"vector-night-mode-issue-reporting-link-notification": "Uvědomjenje prijeto!",
 	"vector-night-mode-issue-reporting-preload-title": "Pogrěška temnogo režima na stranici $1",
 	"vector-night-mode-issue-reporting-preload-content": "<!--\nInstrukcije\nProsimo, opišite, kakym sposobom kolory temnogo režimu otegčajut čitanje Vikipedije. \nProsimo, vključite razděl članka, v ktorom jeste našli toj problem.\n-->\n'''Opis problema'''",
-	"vector-night-mode-beta-tag": "(beta)"
+	"vector-night-mode-beta-tag": "(beta)",
+	"vector-pin-element-aria-label": "Prěměstiti $1 v bočny panel",
+	"vector-unpin-element-aria-label": "Skryti $1"
 }

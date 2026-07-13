@@ -83,5 +83,7 @@
 	"vector-night-mode-issue-reporting-link-notification": "Пријавата е примена!",
 	"vector-night-mode-issue-reporting-preload-title": "Грешка во темниот режим на $1",
 	"vector-night-mode-issue-reporting-preload-content": "<!--\nУпатство\nОпишете како боите во темниот режим го отежнуваат читањето на Википедија.\nВклучете го одделот од статијата каде што го најдовте проблемот.\n-->\n'''Опис на проблемот'''",
-	"vector-night-mode-beta-tag": "(бета)"
+	"vector-night-mode-beta-tag": "(бета)",
+	"vector-pin-element-aria-label": "Премести го $1 во страничникот",
+	"vector-unpin-element-aria-label": "Скриј го $1"
 }

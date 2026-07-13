@@ -98,5 +98,7 @@
 	"vector-night-mode-issue-reporting-link-notification": "보고를 받았습니다!",
 	"vector-night-mode-issue-reporting-preload-title": "$1 다크 모드 오류",
 	"vector-night-mode-issue-reporting-preload-content": "<!--\n안내\n다크 모드 색이 위키백과를 읽기 어렵게 만드는 이유를 설명해 주세요.\n문제를 발견한 문서의 문단을 포함시켜 주세요.\n-->\n'''문제 설명'''",
-	"vector-night-mode-beta-tag": "(베타)"
+	"vector-night-mode-beta-tag": "(베타)",
+	"vector-pin-element-aria-label": "$1을(를) 사이드바로 이동",
+	"vector-unpin-element-aria-label": "$1을(를) 숨기기"
 }

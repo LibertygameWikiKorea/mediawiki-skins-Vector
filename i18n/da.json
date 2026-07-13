@@ -89,5 +89,7 @@
 	"vector-night-mode-issue-reporting-link-notification": "Rapport modtaget!",
 	"vector-night-mode-issue-reporting-preload-title": "$1 mørk tilstandsfejl",
 	"vector-night-mode-issue-reporting-preload-content": "<!--\nInstruktioner\nBeskriv venligst, hvordan farverne i dark mode gør Wikipedia vanskelig at læse.\nAngiv venligst den del af artiklen, hvor du fandt problemet.\n--> \n'''Problembeskrivelse'''",
-	"vector-night-mode-beta-tag": "(beta)"
+	"vector-night-mode-beta-tag": "(beta)",
+	"vector-pin-element-aria-label": "Flyt $1 til sidebjælken",
+	"vector-unpin-element-aria-label": "Skjul $1"
 }

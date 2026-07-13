@@ -93,5 +93,7 @@
 	"vector-night-mode-issue-reporting-link-notification": "Göndərildi!",
 	"vector-night-mode-issue-reporting-preload-title": "$1 səhifəsində qaranlıq rejimlə bağlı problem",
 	"vector-night-mode-issue-reporting-preload-content": "<!--\nTəlimatlar\n\nQaranlıq rejim rənglərinin Vikipediyanın oxunmasını necə çətinləşdirdiyini təsvir edin. \nZəhmət olmasa məqalənin problemi tapdığınız bölməni daxil edin. \n-->\n'''Problemin təsviri'''",
-	"vector-night-mode-beta-tag": "(beta)"
+	"vector-night-mode-beta-tag": "(beta)",
+	"vector-pin-element-aria-label": "{{GRAMMAR:accusative|$1}} yan panelə köçür",
+	"vector-unpin-element-aria-label": "{{GRAMMAR:accusative|$1}} gizlət"
 }
