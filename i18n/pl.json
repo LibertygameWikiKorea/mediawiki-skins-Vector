@@ -30,7 +30,7 @@
 	"vector-no-language-button-label": "Dodaj języki",
 	"vector-no-language-button-aria-label": "Ten artykuł jest dostępny tylko w tym języku. Dodaj artykuły w innych językach.",
 	"vector-language-variant-switcher-label": "Zmień wariant języka",
-	"vector-action-addsection": "Dodaj temat",
+	"vector-action-addsection": "Dodaj wątek",
 	"vector-action-delete": "Usuń",
 	"vector-action-move": "Przenieś",
 	"vector-action-protect": "Zabezpiecz",
@@ -93,5 +93,7 @@
 	"vector-night-mode-issue-reporting-link-notification": "Raport otrzymany!",
 	"vector-night-mode-issue-reporting-preload-title": "Błąd trybu ciemnego na stronie $1",
 	"vector-night-mode-issue-reporting-preload-content": "<!-- \nInstrukcje\n\nOpisz, jak kolory w trybie ciemnym utrudniają czytanie Wikipedii.\nPodaj, w której sekcji artykułu występuje problem. \n-->\n'''Opis problemu'''",
-	"vector-night-mode-beta-tag": "(beta)"
+	"vector-night-mode-beta-tag": "(beta)",
+	"vector-pin-element-aria-label": "Przenieś przycisk „$1” do paska bocznego",
+	"vector-unpin-element-aria-label": "Ukryj „$1”"
 }

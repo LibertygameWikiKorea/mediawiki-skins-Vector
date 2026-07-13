@@ -79,5 +79,7 @@
 	"vector-night-mode-issue-reporting-link-notification": "Warbixinta waa la helay!",
 	"vector-night-mode-issue-reporting-preload-title": "$1 qalad hab mugdi",
 	"vector-night-mode-issue-reporting-preload-content": "<!--\nTilmaamo\nFadlan sharax sida midabada habka mugdigu uga dhigayaan Wikipedia mid adag in la akhriyo.\nFadlan ku dar qaybta maqaalka aad ka heshay dhibaatada.\n-->\n'''Sharaxaadda Dhibaatada'''",
-	"vector-night-mode-beta-tag": "(beta)"
+	"vector-night-mode-beta-tag": "(beta)",
+	"vector-pin-element-aria-label": "U wareeji $1 dhinaca liiska",
+	"vector-unpin-element-aria-label": "Qari $1"
 }
