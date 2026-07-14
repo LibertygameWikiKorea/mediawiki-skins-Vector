@@ -92,5 +92,7 @@
 	"vector-night-mode-issue-reporting-link-notification": "Hlásenie prijaté!",
 	"vector-night-mode-issue-reporting-preload-title": "Chyba tmavého režimu na stránke $1",
 	"vector-night-mode-issue-reporting-preload-content": "<!--\nPokyny\nPopíšte, ako farby tmavého režimu sťažujú čítanie Wikipédie.\nUveďte časť článku, kde ste na problém narazili.\n-->\n'''Popis problému'''",
-	"vector-night-mode-beta-tag": "(beta)"
+	"vector-night-mode-beta-tag": "(beta)",
+	"vector-pin-element-aria-label": "Presunúť $1 na bočný panel",
+	"vector-unpin-element-aria-label": "Skryť $1"
 }

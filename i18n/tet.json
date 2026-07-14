@@ -1,12 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"MF-Warburg"
+			"MF-Warburg",
+			"Robertsky"
 		]
 	},
+	"vector-action-addsection": "Hatama tópiku",
 	"vector-action-protect": "Proteje",
 	"vector-view-create": "Kria",
 	"vector-view-edit": "Edita",
 	"vector-view-history": "Haree istória",
-	"vector-view-view": "Lee"
+	"vector-view-view": "Lee",
+	"vector-unpin-element-label": "subar"
 }
