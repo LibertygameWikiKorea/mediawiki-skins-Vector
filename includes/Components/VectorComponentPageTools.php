@@ -76,6 +76,11 @@ class VectorComponentPageTools implements VectorComponent {
 					] );
 					$viewsMenuData = $menuComponent->getTemplateData();
 					break;
+				default:
+					if ( isset( $menu['id'] ) ) {
+						$pageToolsMenus[] = $menu;
+					}
+					break;
 			}
 		}
 		// Combine views and actions menus

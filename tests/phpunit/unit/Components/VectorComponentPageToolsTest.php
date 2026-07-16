@@ -74,6 +74,10 @@ class VectorComponentPageToolsTest extends VectorComponentSnapshotTestCase {
 		], [
 			'id' => 'p-tb',
 			'array-items' => [ $whatLinksHereLink ]
+		], [
+			'id' => 'p-wikibase-otherprojects',
+			'label' => 'Other projects',
+			'array-items' => [],
 		] ];
 
 		$expectedMenus = $menus;

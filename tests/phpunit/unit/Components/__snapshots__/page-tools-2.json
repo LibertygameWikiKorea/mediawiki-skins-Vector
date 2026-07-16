@@ -43,6 +43,11 @@
                 }
             ],
             "label": "vector-page-tools-general-label"
+        },
+        {
+            "id": "p-wikibase-otherprojects",
+            "label": "Other projects",
+            "array-items": []
         }
     ]
 }
