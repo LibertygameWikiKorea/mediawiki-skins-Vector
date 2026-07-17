@@ -88,5 +88,7 @@
 	"vector-night-mode-issue-reporting-link-notification": "Laporan diterima!",
 	"vector-night-mode-issue-reporting-preload-title": "Ralat mod gelap $1",
 	"vector-night-mode-issue-reporting-preload-content": "<!--\nPanduan\nSila terangkan bagaimana warna mod gelap menjadikan Wikipedia semakin sukar untuk dibaca.\nSila sertakan bahagian rencana yang anda temui isu tersebut.\n--> \n'''Huraian Isu'''",
-	"vector-night-mode-beta-tag": "(beta)"
+	"vector-night-mode-beta-tag": "(beta)",
+	"vector-pin-element-aria-label": "Pindah $1 ke palang sisi",
+	"vector-unpin-element-aria-label": "Sembunyikan $1"
 }
