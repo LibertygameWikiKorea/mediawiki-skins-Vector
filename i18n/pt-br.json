@@ -18,6 +18,7 @@
 			"Luan",
 			"Opraco",
 			"Re demz",
+			"S0rs immanis12",
 			"Tar Lócesilion",
 			"YuriNikolai"
 		]
@@ -100,5 +101,7 @@
 	"vector-night-mode-issue-reporting-link-notification": "Relatório recebido!",
 	"vector-night-mode-issue-reporting-preload-title": "Erro do modo escuro em $1",
 	"vector-night-mode-issue-reporting-preload-content": "<!--\nInstruções\nDescreva como as cores do modo escuro estão dificultando a leitura da Wikipédia.\nInclua a seção do artigo onde você encontrou o problema.\n-->\n'''Descrição do problema'''",
-	"vector-night-mode-beta-tag": "(beta)"
+	"vector-night-mode-beta-tag": "(beta)",
+	"vector-pin-element-aria-label": "Mover $1 para a barra lateral",
+	"vector-unpin-element-aria-label": "Esconder $1"
 }
