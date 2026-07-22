@@ -48,7 +48,7 @@
 	"vector-feature-custom-font-size-1-label": "کره",
 	"vector-feature-custom-font-size-2-label": "لوی",
 	"skin-theme-name": "رنگ",
-	"skin-theme-description": "[ازمايښتي بڼه، د ستونزو ازمايلو لوړه شونتيا] خپرېدونکې رڼا د وسيلې سکرينونو په انډول کموي.",
+	"skin-theme-description": "[ازمايښتي بلبڼه، د ستونزو ازمايلو لوړه شونتيا] خپرېدونکې رڼا د وسيلې سکرينونو په انډول کموي.",
 	"skin-theme-day-label": "روڼ",
 	"skin-theme-night-label": "تياره",
 	"skin-theme-os-label": "خپلکاره",
@@ -85,5 +85,7 @@
 	"vector-night-mode-issue-reporting-link-notification": "راپور ترلاسه شو!",
 	"vector-night-mode-issue-reporting-preload-title": "$1 تياره ونگ‌ډول تېروتنه",
 	"vector-night-mode-issue-reporting-preload-content": "<!--\nلارښوونې\nمهرباني وکړئ، سپيناوی ورکړئ، چې څنگه تياره ونگ‌ډول د ويکيپېډيا لوستل ستونزمنوي.\nمهرباني وکړئ، د ليکنې هغه برخه پکې ورگډې کړئ، چې دا ستونزه مو پکې وموندله.\n-->\n'''ستونزې سپيناوی'''",
-	"vector-night-mode-beta-tag": "(ازمېښتي)"
+	"vector-night-mode-beta-tag": "(ازمېښتي)",
+	"vector-pin-element-aria-label": "$1 څنگپټې ته لېږدول",
+	"vector-unpin-element-aria-label": "$1 پټول"
 }
