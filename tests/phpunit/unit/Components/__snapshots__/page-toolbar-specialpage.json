@@ -15,30 +15,7 @@
         "class": "foo",
         "label": null,
         "html-items": null,
-        "array-list-items": [
-            {
-                "id": "ca-edit",
-                "class": "vector-menu-item--collapsible vector-tab-noicon",
-                "array-links": [
-                    {
-                        "array-attributes": [],
-                        "text": "edit",
-                        "icon": false
-                    }
-                ]
-            },
-            {
-                "id": "ca-addsection",
-                "class": "vector-menu-item--collapsible vector-tab-noicon",
-                "array-links": [
-                    {
-                        "icon": false,
-                        "array-attributes": [],
-                        "text": "edit"
-                    }
-                ]
-            }
-        ],
+        "array-list-items": [],
         "html-tooltip": "",
         "label-class": "",
         "html-before-portal": "",
@@ -46,9 +23,9 @@
     },
     "data-page-tools": {
         "id": "vector-page-tools",
-        "is-pinned": true,
+        "is-pinned": false,
         "data-pinnable-header": {
-            "is-pinned": true,
+            "is-pinned": false,
             "label": "vector-page-tools-label",
             "label-tag-name": "div",
             "pin-label": "vector-pin-element-label",
@@ -62,30 +39,15 @@
         },
         "data-menus": [
             {
-                "array-list-items": [
-                    {
-                        "id": "ca-edit-more",
-                        "class": " vector-menu-item--collapsible",
-                        "array-links": [
-                            {
-                                "array-attributes": [],
-                                "text": "edit",
-                                "icon": null
-                            }
-                        ]
-                    },
-                    {
-                        "id": "ca-addsection-more",
-                        "class": " vector-menu-item--collapsible",
-                        "array-links": [
-                            {
-                                "icon": "bellOutline",
-                                "array-attributes": [],
-                                "text": "edit"
-                            }
-                        ]
-                    }
-                ]
+                "id": "p-cactions",
+                "class": " emptyPortlet",
+                "label": "vector-page-tools-actions-label",
+                "array-list-items": [],
+                "html-after-portal": "",
+                "html-tooltip": "",
+                "label-class": "",
+                "html-before-portal": "",
+                "html-items": ""
             }
         ]
     },
