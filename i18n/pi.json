@@ -5,10 +5,15 @@
 			"咽頭べさ"
 		]
 	},
+	"vector-skin-desc": "२ वेक्टर छवियो पदातीति:\n* २०११ - नवीनरूपं बहुहि सद्धिं मोनोबुक अधुनातनो आकारो॥\n* २०२२ - WMF परिकम्म देस अभिवुद्धि कम्मन्तस्स अङ्गवसेन निम्मिता प्रोजेक्ट [https://www.mediawiki.org/wiki/Desktop_Improvements डेस्कटॉप अङ्गवसेन निम्मिता]॥",
+	"prefs-vector-enable-vector-1-label": "पोराणिकं वेक्टर छविं उपयुञ्जथ",
 	"vector-languages": "भाषा",
 	"vector-language-button-label": "{{PLURAL:$1|$1 भाषा|$1 भाषारो}}",
 	"vector-no-language-button-label": "भासायोजन",
 	"vector-action-addsection": "अधिकारं उपदहतु",
+	"vector-action-delete": "लुप्पना",
+	"vector-action-move": "सारण",
+	"vector-action-protect": "गिुपेहि",
 	"vector-view-create": "रचेतु",
 	"vector-view-history": "इतिहासं पस्सतु",
 	"vector-more-actions": "अधिकं",
