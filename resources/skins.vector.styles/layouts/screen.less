@@ -114,7 +114,7 @@ body {
 
 // Styles only applied to non-empty #contentSub to avoid extra margins when both #contentSub and #contentSub2
 // are rendered.
-#contentSub:not( :empty ),
+#contentSub > div:not( :empty ),
 #contentSub2 {
 	font-size: @font-size-small;
 	color: @color-subtle;
